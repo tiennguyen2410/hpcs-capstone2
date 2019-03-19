@@ -14,6 +14,8 @@
 </body>
 <script src="http://code.jquery.com/jquery.min.js"></script>
 <script
+	src="${pageContext.servletContext.contextPath}/js/bootstrap-filestyle.min.js"></script>
+<script
 	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script>
 <script
 	src="${pageContext.servletContext.contextPath}/js/application.js"></script>
