@@ -1,40 +1,63 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/layouts/header.jsp"%>
-<%@include file="../layouts/slide.jsp"%>
 <!-- hire page -->
 <div class="container text-center">
-	<h1>HIRE BY DATE</h1>
 	<form
 		action="${pageContext.servletContext.contextPath}/layouts/hire.jsp">
 		<div class="form-inline">
-			<div class="form-group">
-				<select id="carefor" class="form-control">
-					<option>Care for</option>
-					<option>Everybody</option>
-					<option>Old Person</option>
-					<option>Patient</option>
-					<option>Postpartum Women</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<select id="specialties" class="form-control">
-					<option>Specialties</option>
-					<option>Ambulatory care nursing</option>
-					<option>Burn nursing</option>
-					<option>Camp nursing</option>
-					<option>Diabetes Nursing</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label>Date from </label> <input type="date" required="required"
-					class="form-control" id="dateFrom"> <label>Date to
-				</label> <input type="date" required="required" class="form-control"
-					id="dateTo">
-			</div>
-			<button type="submit" class="btn btn-default" class="form-control">Search</button>
-		</div>
+            <div class="input-group search">
+                <input type="text" placeholder="Enter name of caregiver" id="searchCaregiver" class="form-control">
+                <div class="input-group-btn">
+                    <button type="button" class="form-control" id="advanced-search-toggle">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </button>
+                    <button type="submit" class="form-control">
+                        <span class="glyphicon glyphicon-search"></span>Search
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="advanced-search" id="advanced-search">
+            <div class="form-inline">
+                <div class="form-group">
+                    <select id="carefor" class="form-control">
+                        <option>Care for</option>
+                        <option>Everybody</option>
+                        <option>Old Person</option>
+                        <option>Patient</option>
+                        <option>Postpartum Women</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="specialties" class="form-control">
+                        <option>Specialties</option>
+                        <option>Ambulatory care nursing</option>
+                        <option>Burn nursing</option>
+                        <option>Camp nursing</option>
+                        <option>Diabetes Nursing</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date from </label> <input type="date" class="form-control" id="dateFrom"> <label>Date to
+                    </label> <input type="date" class="form-control" id="dateTo">
+                </div>
+            </div>
+        </div>
 	</form>
+	<div class="row">
+        <div class="sort-caregiver">
+            <div class="form-inline">
+                <label>Sort by </label> <select class="form-control">
+                    <option>Name</option>
+                    <option>Rating</option>
+                    <option>Hired</option>
+                    <option>Price (low to high)</option>
+                    <option>Price (high to low)</option>
+                </select>
+            </div>
+        </div>
+    </div>
 	<div class="row">
 		<%
 			int a;

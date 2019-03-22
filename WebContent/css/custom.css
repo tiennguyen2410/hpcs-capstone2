@@ -142,7 +142,12 @@ footer {
 }
 
 .tab-content {
-	overflow: hidden;
+	margin: 10px;
+    overflow: hidden;
+    background-color: #fff;
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 img {
@@ -1659,11 +1664,11 @@ scale
 }
 
 .btn-circle {
-	width: 80px;
-	height: 80px;
+	width: 400px;
+	height: 40px;
 	text-align: center;
-	font-size: 30px;
-	border-radius: 50%;
+	font-size: 20px;
+	border-radius: 1px;
 }
 
 .infor-payment {
@@ -1887,6 +1892,8 @@ textarea {
 }
 
 .sidebar {
+	position: fixed;
+	height: 100%;
 	background: #f5f5f5;
 	min-height: 100%;
 	border-left: 5px solid #fff;
@@ -1935,4 +1942,24 @@ li a:hover {
 	margin-top: 30px;
 	padding: 3px;
 	border: 1px solid #000000;
+}
+
+.search,
+.advanced-search {
+    text-align: center;
+    padding: 10px;
+}
+
+.advanced-search {
+    display: none;
+}
+
+.sort-caregiver {
+    padding: 10px;
+    margin: 5px;
+    float: right;
+}
+
+.form-control {
+    border-radius: 0px;
 }

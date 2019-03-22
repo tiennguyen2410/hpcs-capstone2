@@ -1,5 +1,5 @@
 //step by step payment
-$(function(){
+$(document).ready(function(){
 	$('.btn-circle').on('click',function(){
 		$('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
 		$(this).addClass('btn-info').removeClass('btn-default').blur();
@@ -34,4 +34,10 @@ $(document).ready(function(){
 		$("#sign-in").hide();
 		$("#sign-up").show();
 	});
+});
+
+$(document).ready(function(){
+   $('#advanced-search-toggle').click(function(){
+      $('#advanced-search').slideToggle();
+   });
 });
