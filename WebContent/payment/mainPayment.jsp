@@ -7,19 +7,19 @@
 		<div class="process">
 			<div class="process-row nav nav-tabs">
 				<div class="process-step">
-					<button type="button" class="btn btn-info btn-circle"
+					<button type="button" class="btn btn-info btn-step"
 						data-toggle="tab" href="#paymentMenu01">
 						<p>APPOINTMENT</p>
 					</button>
 				</div>
 				<div class="process-step">
-					<button type="button" class="btn btn-default btn-circle"
+					<button type="button" class="btn btn-default btn-step"
 						data-toggle="tab" href="#paymentMenu02">
 						<p>MY SCHEDULE</p>
 					</button>
 				</div>
 				<div class="process-step">
-					<button type="button" class="btn btn-default btn-circle"
+					<button type="button" class="btn btn-default btn-step"
 						data-toggle="tab" href="#paymentMenu03">
 						<p>CHECK & CONFIRM</p>
 					</button>

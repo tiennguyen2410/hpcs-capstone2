@@ -8,6 +8,10 @@
 				<img
 					src="https://image.freepik.com/free-vector/nursing_3870-335.jpg"
 					style="width: 100%;">
+				<p class="text-center">
+					Do not have an account, <a class="sign-in" id="sign-in-toggle"
+						type="button" href="#">sign up now!</a>
+				</p>
 			</div>
 			<div class="col-md-8 form-horizontal">
 				<h3 class="text-center">
@@ -122,12 +126,6 @@
 						<a type="submit" href="../layouts/main.jsp"
 							class="btn btn-success btn-block signup-btn">Sign Up</a>
 					</div>
-				</div>
-				<div class="col-sm-10 col-sm-offset-2">
-					<p>
-						Do not have an account, <a class="sign-in" id="sign-in-toggle"
-							type="button" href="#">sign up now!</a>
-					</p>
 				</div>
 			</div>
 		</form>
