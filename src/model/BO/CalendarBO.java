@@ -8,13 +8,22 @@ import model.DAO.CalendarDAO;
 public class CalendarBO {
 
 	CalendarDAO dao = new CalendarDAO();
-	public ArrayList<Calendar> getCalendar() {
-		return dao.getCalendar();
+	public ArrayList<Calendar> getListCalendar() {
+		return dao.getListCalendar();
 	}
 	public void addCaculatorFree(String start, String finish, String address,int id ) {
 		dao.addCaculatorFree(start, finish, address, id);
 	}
 	public void deleteCaculatorFree(String id) {
 		dao.deleteCaculatorFree(id);
+	}
+	public void updateCaculatorFree(String id,String start, String finish) {
+		dao.updateCaculatorFree(id, start, finish);
+	}
+	public Calendar getCalendar(String id) {
+		return dao.getCalendar(id);
+	}
+	public ArrayList<Calendar> getListCalendar(String idCaregiver,String idCustomer) {
+		return dao.getListCalendar(idCaregiver,idCustomer);
 	}
 }

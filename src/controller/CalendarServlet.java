@@ -36,11 +36,20 @@ public class CalendarServlet extends HttpServlet {
 			{
 				calendarBO.deleteCaculatorFree(request.getParameter("idCaculator"));
 			}
+			if(request.getParameter("submit").equals("update")) { //click update
+				calendarBO.updateCaculatorFree(request.getParameter("idCaculatorUpdate"),
+						request.getParameter("updateTimeStart"), request.getParameter("updateTimeFinish"));
+			}
+			if(request.getParameter("submit").equals("cancel")) { //click cancel custome caculator
+				// truoc khi xoa nen chuyen qua table khac de luu du lieu lich cua khach hang
+				//in ra de sao chep lai vo database
+				System.out.println(calendarBO.getCalendar(request.getParameter("idCancelCalendar")));
+				calendarBO.deleteCaculatorFree(request.getParameter("idCancelCalendar"));
+			}
+			
 		}
-		ArrayList<Calendar> list = calendarBO.getCalendar();
+		ArrayList<Calendar> list = calendarBO.getListCalendar();
 		request.setAttribute("calendar", list);
-		System.out.println(list);
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/customer/scheduleCustomer.jsp");
 		rd.forward(request, response);
 	}
