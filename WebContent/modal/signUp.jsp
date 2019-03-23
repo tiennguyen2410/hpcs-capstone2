@@ -49,12 +49,12 @@
 						<div class="row">
 							<div class="col-sm-4">
 								<label class="radio-inline"> <input type="radio"
-									id="femaleRadio" value="Female">Female
+									name="optradio" checked>Male
 								</label>
 							</div>
 							<div class="col-sm-4">
 								<label class="radio-inline"> <input type="radio"
-									id="maleRadio" value="Male">Male
+									name="optradio">Famale
 								</label>
 							</div>
 						</div>
@@ -108,6 +108,13 @@
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="street"
 							placeholder="Enter street" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="">Phone:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="phone"
+							placeholder="Enter phone number" required="required">
 					</div>
 				</div>
 				<div class="form-group">
