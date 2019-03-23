@@ -10,6 +10,4 @@ public class CaregiverBO {
 		public ArrayList<Caregiver> getCaregiver() {
 			return caregiverDAO.getCaregiver();
 		}
-		
-	
-}	
+}

@@ -1,16 +1,14 @@
 package model.DAO;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 import model.BEAN.Caregiver;
 
-public class CaregiverDAO /*implements CaregiverDAOXuLyPhanTrang*/ {
+public class CaregiverDAO {
 
 	public ArrayList<Caregiver> getCaregiver() {
 		String sql = "SELECT capstone2.account.ID_ACCOUNT,capstone2.account.NAME,capstone2.account.ADDRESS,\r\n" + 
@@ -42,45 +40,8 @@ public class CaregiverDAO /*implements CaregiverDAOXuLyPhanTrang*/ {
 		}
 		return list;
 	}
+	
 	public static void main(String[] args) {
 		System.out.println(new CaregiverDAO().getCaregiver());
 	}
-	/*@Override
-	public List<Caregiver> getListCaregiver(List<Caregiver> list, int start, int end) {
-		List<Caregiver> result = new ArrayList<Caregiver>();
-		for(int i =start ; i< end ; i++) {
-			result.add(list.get(i));
-			
-		}
-		return result;
-	}*/
-	
-	//Test show
-//	    public static void main(String[] args) {
-//	        ShopDAO s = new ShopDAO();
-//	        System.out.println(s.getShop());
-//	    }
-
-
-	//Total product number
-	public int getCount() throws ClassNotFoundException, SQLException {
-	    Connection conn = MySQLConnUtils.getMySQLConnection();
-	    ArrayList<Caregiver> list = new ArrayList();
-	    String sql = "SELECT count(id) FROM product.shop";
-	    int count = 0;
-	    try {
-	        PreparedStatement stmt = conn.prepareStatement(sql);
-	        ResultSet rs = stmt.executeQuery();
-	        while (rs.next()) {
-	            count = rs.getInt(1);
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    return count;
-	}
-	
-	
-	
-	
 }

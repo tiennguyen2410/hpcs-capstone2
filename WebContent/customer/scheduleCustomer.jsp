@@ -4,6 +4,9 @@
 <%@page import="model.BEAN.Calendar"%>
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/css/fullcalendar.css">
+
+<!--  loi css dong  -->
+<!-- <link rel="stylesheet" href="../css/fullcalendar.print.css"> -->
 <%@include file="../layouts/header.jsp"%>
 <%@ page import="model.DAO.TestThemLich"%>
 <div id="wrap">
@@ -12,6 +15,7 @@
 
 	<div style="clear: both"></div>
 </div>
+
 <%@include file="../layouts/footer.jsp"%>
 <script
 	src="${pageContext.servletContext.contextPath}/js/fullcalendar.js"></script>
@@ -45,7 +49,6 @@
 
 					// store the Event Object in the DOM element so we can get to it later
 					$(this).data('eventObject', eventObject);
-
 					// make the event draggable using jQuery UI
 					$(this).draggable({
 						zIndex : 999,
@@ -62,20 +65,18 @@
 				var calendar = $('#calendar').fullCalendar(
 						{
 							// 							event when click, de hien thi thong tin chi tiet
-							eventClick : function(calEvent, jsEvent, view) {
-								alert('thong tin chi tiet hien o day ne');
-								// 							    alert('Event: ' + calEvent.title);
-								// 							    alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-								// 							    alert('View: ' + view.name);
-
+							eventClick : function(calEvent) {
 								// change the border color just for fun
-								$(this).css('border-color', 'red');
-
+// 								$(this).css('border-color', 'red');
+								showModalClick(calEvent);
 							},
 							eventResize: function(event, delta, revertFunc) {
-							    alert('thay doi kich thuoc');
+								updateCaculatorFree(event.start,event.end,event.id);
+							   
 							  },
-							
+							  eventResizeStart: function(event) { 
+								  updateCaculatorFreeOld(event.start,event.end);
+							  },
 							header : {
 								left : 'title',
 								center : 'agendaDay,agendaWeek,month',
@@ -101,13 +102,8 @@
 							allDaySlot : false,
 							selectHelper : true,
 							select : function(start, end, allDay) {
-								// 								var title = prompt('alo alocc');
-								// 								alert(new Date(start).getFullYear()+'***');
-							
-        						var s =start.getYear()+1900+"-"+start.getMonth()+"-"+start.getDate()+" "+start.getHours()+":"+start.getMinutes();
-        							var e =end.getYear()+1900+"-"+end.getMonth()+"-"+end.getDate()+" "+end.getHours()+":"+end.getMinutes();
-								
-// 		alert(s +"\n"+ e);
+							var s =convertDate(start);
+							var e = convertDate(end);
 		$('#myModal1').modal('show');
 		$("#timeStart").val(s);
 		$("#timeEnd").val(e);
@@ -132,10 +128,8 @@
 								calendar.fullCalendar('unselect');
 							},
 							
-							
 							droppable : true, // this allows things to be dropped onto the calendar !!!
 							drop : function(date, allDay) { // this function is called when something is dropped
-
 								// retrieve the dropped element's stored Event Object
 								var originalEventObject = $(this).data(
 										'eventObject');
@@ -158,12 +152,20 @@
 									// if so, remove the element from the "Draggable Events" list
 									$(this).remove();
 								}
-
 							},
 							
+							eventDrop: //move lich
+								function (event) {
+								updateCaculatorFree(event.start,event.end,event.id);
+							},
+							eventDragStop: //sau khi keo tha
+								function(event){
+								updateCaculatorFreeOld(event.start,event.end);
+								
+							},
 							//get calendar of a caregiver
 							<%ArrayList<Calendar> calendar = (ArrayList<Calendar>) request.getAttribute("calendar");%>
-							 events : [
+							events : [
 								 // get du lieu len cacular
 								 <%int i;
 			for (i = 0; i < calendar.size(); i++) {%>
@@ -177,13 +179,139 @@
 											allDay : false,
 											<%if (calendar.get(i).getId_customer() != 0) {%>
 											editable : false,
-												<%}%>
-											className : 'info' // thay doi ten class se cho mau` khac
+											className : 'info'
+												<%} else {%>
+												className : 'free'
+											<%}%>
+											 // thay doi ten class se cho mau` khac
 										}, 
+								 
+								 
+								 
 								<%}%>
 							{} ],
 						});
+
 			});
+	//covert to format yyyy-mm-dd hh:mm
+	function convertDate(day) {
+		var s =day.getYear()+1900+"-"+(parseInt(day.getMonth())+1)+"-"+day.getDate()+" "+day.getHours()+":"+day.getMinutes();
+		return s;
+		}
+	function updateCaculatorFree(start,end,id){ //set new date date in update caculator free page
+		$('#updateModalFree').modal('show');
+		var s = convertDate(start);
+		var e = convertDate(end);
+		$("#updateTimeStart").val(s);
+		$("#updateTimeFinish").val(e);
+		$("#idCaculatorUpdate").val(id);
+	}
+	function updateCaculatorFreeOld(start,end){//set old date in update caculator free page
+		var s = convertDate(start);
+		var e = convertDate(end);
+		$("#updateTimeStartOld").val(s);
+		$("#updateTimeFinishOld").val(e);
+	}
 	
+	// so sanh ngay bat dau va ngay ket thuc
+	function checkValidTwoDate(start,end){
+		var arrStart=start.split(" ");
+		var arrEnd=end.split(" ");
+		if(new Date(arrStart[0])>new Date(arrEnd[0])){
+			alert('ngay bat dau phai be hon hoac bang ngay ket thuc')
+			return false;
+		}
+		else{
+			if(new Date(arrStart[0]).getTime()==new Date(arrEnd[0]).getTime()){
+				if(parseInt(arrStart[1].split(":")[0])>parseInt(arrEnd[1].split(":")[0])){
+					alert('gio bat dau phai be hon hoac bang gio ket thuc');
+					return false;
+				}
+				else{
+					if(arrStart[1].split(":")[0]==arrEnd[1].split(":")[0]){
+						
+						if(parseInt(arrStart[1].split(":")[1])>=parseInt(arrEnd[1].split(":")[1])){
+							alert('phut bat dau phai be hon hoac bang phut ket thuc');
+							return false;
+						}
+					}
+				}
+			}
+			else return true;
+		}
+		return true; 
+	}
+	function testcheckForm(){		
+		s = document.getElementById("timeStart").value;
+		e = document.getElementById("timeEnd").value;
+		if(checkValidDate(s)==false){
+			$("#timeStart").focus();
+			return false;
+		}
+		else{
+			if(checkValidDate(e)==false){
+				$("#timeEnd").focus();
+				return false;
+			}
+			else{
+				return checkValidTwoDate(s,e);
+				}
+		}
+		return true;
+	}
+	//check ngay co hop le khong
+	function checkValidDate(date){
+		//check format yyyy-mm-dd hh:mm
+		if(!(/\d{4}-\d{1,2}-\d{1,2}\s\d{1,2}:\d{1,2}$/.test(date.toString()))){
+			alert(date+' sai dinh dang!!');
+			return false;
+		}
+		var day=date.split(" ");
+		if(new Date(day[0])=='Invalid Date'){
+			alert(date+' ngay thang nam khong hop le');
+			return false;
+		}
+		if(parseInt(day[1].split(":")[0])<0 || parseInt(day[1].split(":")[0])>23){
+			alert(date+' gio khong hop le');
+			return false;
+		}
+		if(parseInt(day[1].split(":")[1]) <0 || parseInt(day[1].split(":")[1]) >59){
+			alert(date+' phut khong hop le');
+			return false;
+		}
+		return true;
+	}
+	
+	// event when click 1 lich
+	function showModalClick(calEvent){
+		if(calEvent.title=="FREETIME"){
+			showModalDeleteCalendar(calEvent);
+		}
+		else{
+			showModalCancelCalendar(calEvent);
+		}
+	}
+	//delete free calendar
+	function showModalDeleteCalendar(calEvent){
+		var s =convertDate(calEvent.start);
+		var e = convertDate(calEvent.end);
+		$('#deleteModalFree').modal('show');
+		$("#deleteTimeStart").val(s);
+		$("#deleteTimeFinish").val(e);
+		$("#idCaculator").val(calEvent.id);
+	}
+	// cancel calendar of customer
+	function showModalCancelCalendar(calEvent){
+		var s =convertDate(calEvent.start);
+		var e = convertDate(calEvent.end);
+		var t=calEvent.id;
+		$('#cancelModal').modal('show');
+		$("#cancelTimeStart").val(s);
+		$("#cancelTimeFinish").val(e);
+		$("#idCancelCalendar").val(t);
+	}
 </script>
 <%@include file="../modal/dangkilich.jsp"%>
+<%@include file="../modal/deleteCaculatorFree.jsp"%>
+<%@include file="../modal/updateCaculatorFree.jsp"%>
+<%@include file="../modal/cancelCalendar.jsp"%>
