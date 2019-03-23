@@ -19,4 +19,6 @@
 	src="${pageContext.servletContext.contextPath}/js/bootstrap.min.js"></script>
 <script
 	src="${pageContext.servletContext.contextPath}/js/application.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/js/jquery.datetimepicker.full.min.js"></script>
 </html>

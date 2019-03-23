@@ -9,6 +9,8 @@
 	href="${pageContext.servletContext.contextPath}/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/css/custom.css">
+<link rel="stylesheet"
+	href="${pageContext.servletContext.contextPath}/css/jquery.datetimepicker.min.css">
 <title>Home Patient Care Service</title>
 </head>
 <body>
@@ -27,7 +29,7 @@
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a
-						href="${pageContext.servletContext.contextPath}/layouts/hire.jsp"><strong>Hire
+						href="/home_patient_care_service/HienThiCaregiverServlet"><strong>Hire
 								a Caregiver</strong></a></li>
 					<li><a href="#"><strong>Health Services</strong></a></li>
 					<li class="sign-in"><a type="button" data-toggle="modal"

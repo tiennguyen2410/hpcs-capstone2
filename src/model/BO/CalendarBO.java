@@ -11,4 +11,10 @@ public class CalendarBO {
 	public ArrayList<Calendar> getCalendar() {
 		return dao.getCalendar();
 	}
+	public void addCaculatorFree(String start, String finish, String address,int id ) {
+		dao.addCaculatorFree(start, finish, address, id);
+	}
+	public void deleteCaculatorFree(String id) {
+		dao.deleteCaculatorFree(id);
+	}
 }

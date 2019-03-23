@@ -8,11 +8,9 @@
 			<div class="container-fliud">
 				<div class="wrapper row">
 					<div class="preview col-md-6">
-						<div class="preview-pic tab-content">
-							<img
-								src="https://scontent.fdad2-1.fna.fbcdn.net/v/t1.0-9/28059500_2228677234026116_2812707201994302461_n.jpg?_nc_cat=109&_nc_oc=AQneXh8Kw39qQmvu1bCSrJv18opXPH9MUc5cd3xSuEBsa9Gn-hRWv_P7PI42NMy35s0&_nc_ht=scontent.fdad2-1.fna&oh=6b17944db16a7e091166e40434610c4b&oe=5D1AE6C0"
-								class="img-responsive" alt="Image">
-						</div>
+						<img
+							src="https://scontent.fdad2-1.fna.fbcdn.net/v/t1.0-9/28059500_2228677234026116_2812707201994302461_n.jpg?_nc_cat=109&_nc_oc=AQneXh8Kw39qQmvu1bCSrJv18opXPH9MUc5cd3xSuEBsa9Gn-hRWv_P7PI42NMy35s0&_nc_ht=scontent.fdad2-1.fna&oh=6b17944db16a7e091166e40434610c4b&oe=5D1AE6C0"
+							class="img-responsive" alt="Image">
 					</div>
 					<div class="details col-md-6">
 						<h3 class="caregiver-name hired">

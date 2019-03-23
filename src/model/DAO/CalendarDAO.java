@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import model.BEAN.Calendar;
 
-@SuppressWarnings("unused")
 public class CalendarDAO {
 
 	public ArrayList<Calendar> getCalendar() {
@@ -35,7 +34,44 @@ public class CalendarDAO {
 		return list;
 	}
 
-	public static void main(String[] args) {
-		System.out.println(new CalendarDAO().getCalendar());
+	public void addCaculatorFree(String start, String finish, String address, int id) {
+
+		String sql = "INSERT INTO `capstone2`.`calendar` (`START_DATE`, `FINISH_DATE`, `ADDRESS`, `ID_CAREGIVER`) "
+				+ "VALUES ('" + start + "', '" + finish + "', '" + address + "', '" + id + "');";
+		try {
+			Statement stmt;
+			try {
+				stmt = MySQLConnUtils.getMySQLConnection().createStatement();
+				stmt.executeUpdate(sql);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
+
+	public void deleteCaculatorFree(String id) {
+		String sql = "DELETE FROM `capstone2`.`calendar` WHERE `ID_CALENDAR`='"+id+"';";
+		try {
+			Statement stmt;
+			try {
+				stmt = MySQLConnUtils.getMySQLConnection().createStatement();
+				stmt.executeUpdate(sql);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		new CalendarDAO().deleteCaculatorFree("12");
+	}
+
 }

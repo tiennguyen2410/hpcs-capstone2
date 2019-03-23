@@ -1,14 +1,14 @@
 //step by step payment
 $(document).ready(function(){
-	$('.btn-circle').on('click',function(){
-		$('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+	$('.btn-step').on('click',function(){
+		$('.btn-step.btn-info').removeClass('btn-info').addClass('btn-default');
 		$(this).addClass('btn-info').removeClass('btn-default').blur();
 	});
 
 	$('.next-step, .prev-step').on('click', function (e){
 		var $activeTab = $('.tab-pane.active');
 
-		$('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+		$('.btn-step.btn-info').removeClass('btn-info').addClass('btn-default');
 
 		if ( $(e.target).hasClass('next-step') )
 		{
@@ -24,7 +24,7 @@ $(document).ready(function(){
 		}
 	});
 });
-
+//sign in sign up form
 $(document).ready(function(){
 	$("#sign-in-toggle").click(function(){
 		$("#sign-in").show();
@@ -35,9 +35,17 @@ $(document).ready(function(){
 		$("#sign-up").show();
 	});
 });
+//advanced search
+$(document).ready(function(){
+	$('#advanced-search-toggle').click(function(){
+		$('#advanced-search').slideToggle();
+	});
+});
+//date time picker
+$(document).ready(function(){
+	$('#timeFrom').datetimepicker();
+});
 
 $(document).ready(function(){
-   $('#advanced-search-toggle').click(function(){
-      $('#advanced-search').slideToggle();
-   });
+	$('#timeTo').datetimepicker();
 });
