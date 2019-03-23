@@ -1,37 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	version="3.1">
-	<display-name>home_patient_care_service</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	</welcome-file-list>
-
-	<servlet>
-		<description></description>
-		<display-name>themlichSeverlet</display-name>
-		<servlet-name>themlichSeverlet</servlet-name>
-		<servlet-class>controller.themlichSeverlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>themlichSeverlet</servlet-name>
-		<url-pattern>/themlichSeverlet</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<description></description>
-		<display-name>CalendarServlet</display-name>
-		<servlet-name>CalendarServlet</servlet-name>
-		<servlet-class>controller.CalendarServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>CalendarServlet</servlet-name>
-		<url-pattern>/CalendarServlet</url-pattern>
-	</servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>home_patient_care_service</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <description></description>
+    <display-name>themlichSeverlet</display-name>
+    <servlet-name>themlichSeverlet</servlet-name>
+    <servlet-class>controller.themlichSeverlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>themlichSeverlet</servlet-name>
+    <url-pattern>/themlichSeverlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>CalendarServlet</display-name>
+    <servlet-name>CalendarServlet</servlet-name>
+    <servlet-class>controller.CalendarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CalendarServlet</servlet-name>
+    <url-pattern>/CalendarServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HienThiCaregiverServlet</display-name>
+    <servlet-name>HienThiCaregiverServlet</servlet-name>
+    <servlet-class>controller.HienThiCaregiverServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HienThiCaregiverServlet</servlet-name>
+    <url-pattern>/hienthicaregiver</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <description></description>
+    <display-name>viewCaregiverCalendarServlet</display-name>
+    <servlet-name>viewCaregiverCalendarServlet</servlet-name>
+    <servlet-class>controller.viewCaregiverCalendarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewCaregiverCalendarServlet</servlet-name>
+    <url-pattern>/viewCaregiverCalendarServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

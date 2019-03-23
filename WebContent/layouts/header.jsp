@@ -11,6 +11,8 @@
 	href="${pageContext.servletContext.contextPath}/css/custom.css">
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/css/jquery.datetimepicker.min.css">
+<link rel="stylesheet"
+	href="${pageContext.servletContext.contextPath}/css/fullcalendar.css">
 <title>Home Patient Care Service</title>
 </head>
 <body>

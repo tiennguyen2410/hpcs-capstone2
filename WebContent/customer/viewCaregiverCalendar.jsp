@@ -1,22 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link rel="stylesheet"
-	href="${pageContext.servletContext.contextPath}/css/fullcalendar.css">
 <%@include file="../layouts/header.jsp"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.BEAN.Calendar"%>
 <div id="wrap">
-<button onclick="cailol()">ccccccc</button>
+	<button onclick="cailol()">ccccccc</button>
 	<input id="heloo">
 	<div id="calendar"></div>
-
 	<div style="clear: both"></div>
 </div>
 <%@include file="../layouts/footer.jsp"%>
-<script
-	src="${pageContext.servletContext.contextPath}/js/fullcalendar.js"></script>
-<script
-	src="${pageContext.servletContext.contextPath}/js/jquery-ui.custom.min.js"></script>
 <script>
 	$(document).ready(
 			function() {
