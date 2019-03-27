@@ -2,25 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="model.BEAN.Calendar"%>
-<link rel="stylesheet"
-	href="${pageContext.servletContext.contextPath}/css/fullcalendar.css">
-
-<!--  loi css dong  -->
-<!-- <link rel="stylesheet" href="../css/fullcalendar.print.css"> -->
 <%@include file="../layouts/header.jsp"%>
 <%@ page import="model.DAO.TestThemLich"%>
 <div id="wrap">
-
 	<div id="calendar"></div>
-
 	<div style="clear: both"></div>
 </div>
-
 <%@include file="../layouts/footer.jsp"%>
-<script
-	src="${pageContext.servletContext.contextPath}/js/fullcalendar.js"></script>
-<script
-	src="${pageContext.servletContext.contextPath}/js/jquery-ui.custom.min.js"></script>
 <script>
 	$(document).ready(
 			function() {
@@ -104,7 +92,7 @@
 							select : function(start, end, allDay) {
 							var s =convertDate(start);
 							var e = convertDate(end);
-		$('#myModal1').modal('show');
+		$('#registerCalendarModal').modal('show');
 		$("#timeStart").val(s);
 		$("#timeEnd").val(e);
 		
@@ -178,7 +166,7 @@
 													<%=calendar.get(i).getFinishDate().substring(8, 10)%>,<%=calendar.get(i).getFinishDate().substring(11, 13)%>, <%=calendar.get(i).getFinishDate().substring(14, 16)%>),
 											allDay : false,
 											<%if (calendar.get(i).getId_customer() != 0) {%>
-											editable : false,
+											 editable : false,
 											className : 'info'
 												<%} else {%>
 												className : 'free'
@@ -311,7 +299,7 @@
 		$("#idCancelCalendar").val(t);
 	}
 </script>
-<%@include file="../modal/dangkilich.jsp"%>
+<%@include file="../modal/registerCalendar.jsp"%>
 <%@include file="../modal/deleteCaculatorFree.jsp"%>
 <%@include file="../modal/updateCaculatorFree.jsp"%>
 <%@include file="../modal/cancelCalendar.jsp"%>

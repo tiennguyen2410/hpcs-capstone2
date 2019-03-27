@@ -70,7 +70,6 @@
 		ArrayList<Caregiver> listCaregiver = (ArrayList<Caregiver>) request.getAttribute("ccc");
 		for (Caregiver caregiver : listCaregiver) {
 	%>
-	<div class="row">
 		<div class="col-md-3">
 			<div class="container-info">
 				<img
@@ -97,7 +96,6 @@
 		<%
 			}
 		%>
-	</div>
 </div>
 <%@include file="/modal/caregiverInformation.jsp"%>
 <%@include file="../layouts/footer.jsp"%>
