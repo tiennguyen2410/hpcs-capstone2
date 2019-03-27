@@ -49,3 +49,13 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$('#timeTo').datetimepicker();
 });
+
+//other address
+$(document).ready(function(){
+	$('#other-address-toggle').click(function(){
+		$('#other-address').show();
+	});
+	$('#default-address').click(function(){
+		$('#other-address').hide();
+	});
+});

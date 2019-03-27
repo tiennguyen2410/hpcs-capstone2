@@ -36,7 +36,7 @@
 						<h4 class="price">
 							Hire cost: <span>FREE</span>
 						</h4>
-						<a href="../payment/mainPayment.jsp" class="hire btn btn-default"
+						<a href="${pageContext.servletContext.contextPath}/payment/mainPayment.jsp" class="hire btn btn-default"
 							type="button">Proceed to Hire</a>
 					</div>
 				</div>

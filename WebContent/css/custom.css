@@ -1689,6 +1689,30 @@ scale
 	line-height: 1.5em;
 }
 
+.register-calendar-modal {
+	margin: 100px auto;
+	padding: 10px;
+	line-height: 1.5em;
+	background-color: #2aacf1;
+	width: 500px;
+	height: 100%;
+	
+}
+
+.modal-title {
+	color: #fff;
+	font-size: 20px;
+	padding: 20px;
+	text-align: center;
+}
+
+.modal-body {
+	background-color: #fff;
+	width: 500px;
+	height: auto;
+	margin: -10px;
+}
+
 #wrap {
 	width: 1100px;
 	margin: 0 auto;
@@ -1957,6 +1981,10 @@ li a:hover {
 }
 
 .advanced-search {
+	display: none;
+}
+
+.other-address {
 	display: none;
 }
 

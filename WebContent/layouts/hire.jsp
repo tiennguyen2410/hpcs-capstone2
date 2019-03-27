@@ -70,34 +70,32 @@
 		ArrayList<Caregiver> listCaregiver = (ArrayList<Caregiver>) request.getAttribute("ccc");
 		for (Caregiver caregiver : listCaregiver) {
 	%>
-	<div class="row">
-		<div class="col-md-3">
-			<div class="container-info">
-				<img
-					src="<%=request.getContextPath()%>/image/<%=caregiver.getAvatar()%>"
-					alt="Image" style="height: 262.5px; width: 262.5px;">
-				<div class="overlay"></div>
-				<div class="button">
-					<a type="button" data-toggle="modal"
-						data-target="#caregiverInformationModal">Detail</a>
-				</div>
-				<h3><%=caregiver.getName()%></h3>
-				<div class="rating">
-					<span class="glyphicon glyphicon-star"></span><span
-						class="glyphicon glyphicon-star"> </span><span
-						class="glyphicon glyphicon-star"></span><span
-						class="glyphicon glyphicon-star"> </span><span
-						class="glyphicon glyphicon-star-empty"></span>
-				</div>
-				<h4><%=caregiver.getName_education()%></h4>
-				<div class="col-md-6 text-left">hire cost: free</div>
-				<div class="col-md-6 text-right">109 hired</div>
+	<div class="col-md-3">
+		<div class="container-info">
+			<img
+				src="<%=request.getContextPath()%>/image/<%=caregiver.getAvatar()%>"
+				alt="Image" style="height: 262.5px; width: 262.5px;">
+			<div class="overlay"></div>
+			<div class="button">
+				<a type="button" data-toggle="modal"
+					data-target="#caregiverInformationModal">Detail</a>
 			</div>
+			<h3><%=caregiver.getName()%></h3>
+			<div class="rating">
+				<span class="glyphicon glyphicon-star"></span><span
+					class="glyphicon glyphicon-star"> </span><span
+					class="glyphicon glyphicon-star"></span><span
+					class="glyphicon glyphicon-star"> </span><span
+					class="glyphicon glyphicon-star-empty"></span>
+			</div>
+			<h4><%=caregiver.getName_education()%></h4>
+			<div class="col-md-6 text-left">hire cost: free</div>
+			<div class="col-md-6 text-right">109 hired</div>
 		</div>
-		<%
-			}
-		%>
 	</div>
+	<%
+		}
+	%>
 </div>
-<%@include file="/modal/caregiverInformation.jsp"%>
 <%@include file="../layouts/footer.jsp"%>
+<%@include file="/modal/caregiverInformation.jsp"%>
