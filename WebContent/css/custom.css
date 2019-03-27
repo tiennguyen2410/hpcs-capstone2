@@ -1683,10 +1683,15 @@ scale
 	cursor: pointer;
 }
 
-.sign-in-modal {
+.sign-in-modal, .register-calendar-modal {
 	margin-top: 50px;
 	padding: 3em;
 	line-height: 1.5em;
+}
+
+.register-calendar-modal {
+	background-color: #fff;
+	text-align: center;
 }
 
 #wrap {
