@@ -6028,7 +6028,6 @@ function HoverListener(coordinateGrid) {
 	var firstCell;
 	var cell;
 	
-	
 	t.start = function(_change, ev, _bindType) {
 		change = _change;
 		firstCell = cell = null;
