@@ -52,10 +52,14 @@ $(document).ready(function(){
 
 //other address
 $(document).ready(function(){
-	$('#other-address-toggle').click(function(){
-		$('#other-address').show();
+	$('#other-infor-toggle').click(function(){
+		$('#other-infor-toggle').hide();
+		$('#other-infor').show();
+		$('#close-other-infor-toggle').show();
 	});
-	$('#default-address').click(function(){
-		$('#other-address').hide();
+	$('#close-other-infor-toggle').click(function(){
+		$('#other-infor-toggle').show();
+		$('#other-infor').hide();
+		$('#close-other-infor-toggle').hide();
 	});
 });

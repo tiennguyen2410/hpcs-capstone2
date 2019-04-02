@@ -5,28 +5,50 @@
 	<div class="container-fluid">
 		<div class="register-calendar-modal">
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<textarea id="idCalendarStr" style="width: 1000px" hidden="hiddent"></textarea>
 			<p class="modal-title">
 				<span class="glyphicon glyphicon-info-sign"></span>Do you want to <i>hire
-					caregiver</i> at the time below
+					caregiver</i>
 			</p>
-			<form action="CalendarServlet" method="post" id="addSchedule"
-				onsubmit="return testcheckForm();">
-				<input id="idCancelCalendar" name="idCancelCalendar" hidden="hidden">
+			<form action="viewCaregiverCalendarServlet" method="post" id="">
 				<div class="row modal-body">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Time start at</th>
+								<th>Time end at</th>
+								<th>Prices</th>
+							</tr>
+						</thead>
+						<tbody id="dumTable">
+						</tbody>
+					</table>
 					<div class="form-group">
-						<label>Time start at</label> <input id="timeStart"
-							name="timeStart" class="form-control" disabled>
+						<p>Coupon</p>
+						<input type="text" id="coupon">
+						<p id="total_price">
+						</p>
 					</div>
 					<div class="form-group">
-						<label>Time end at</label> <input id="timeEnd" name="timeFinish"
-							class="form-control" disabled>
-					</div>
-					<div class="form-group">
-						<input type="radio" id="default-address" name="address" value="" checked>Địa
-						chỉ mặc định<br> <input type="radio" name="address" value=""
-							id="other-address-toggle">Địa chỉ khác<br>
-						<div class="other-address" id="other-address">
+						<label>Thông tin mặc định</label><br> <label>Nguyễn
+							Đặng Khải</label><br> <label>Sđt: 0101010100</label><br> <label>Địa
+							chỉ: 254 Nguyễn Văn Linh</label><br>
+						<div class="form-group">
+							<button type="button" name="address" value=""
+								id="other-infor-toggle">Sửa thông tin</button>
+							<button type="button" name="address" value=""
+								id="close-other-infor-toggle" class="close-other-infor-toggle">Hủy</button>
+						</div>
+						<div class="other-infor" id="other-infor">
 							<div class="row">
+								<div class="col-md-6 form-group">
+									<input type="text" class="form-control" id="fullname"
+										placeholder="Enter your full name ...">
+								</div>
+								<div class="col-md-6 form-group">
+									<input type="text" class="form-control" id="phone"
+										placeholder="Enter your phone ...">
+								</div>
 								<div class="col-md-4 form-group">
 									<select id="tinh" class="form-control">
 										<option>Address</option>
@@ -52,10 +74,13 @@
 									</select>
 								</div>
 							</div>
-							<input type="text" class="form-control"
-								placeholder="Enter your street ...">
+							<div class="form-group">
+								<input type="text" class="form-control" id="street"
+									placeholder="Enter your street ...">
+							</div>
 						</div>
 					</div>
+					<textarea id="id_promotion" name="id_promotion" hidden="hidden"></textarea>
 					<div class="pull-right">
 						<button type="submit" value="add" name="submit"
 							class="btn btn-success form-control">Confirm</button>

@@ -2,13 +2,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="model.BEAN.Calendar"%>
+<link rel="stylesheet"
+	href="${pageContext.servletContext.contextPath}/css/fullcalendar.css">
+
+<!--  loi css dong  -->
+<!-- <link rel="stylesheet" href="../css/fullcalendar.print.css"> -->
 <%@include file="../layouts/header.jsp"%>
 <%@ page import="model.DAO.TestThemLich"%>
 <div id="wrap">
+
 	<div id="calendar"></div>
+
 	<div style="clear: both"></div>
 </div>
+
 <%@include file="../layouts/footer.jsp"%>
+<script
+	src="${pageContext.servletContext.contextPath}/js/fullcalendar.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/js/jquery-ui.custom.min.js"></script>
 <script>
 	$(document).ready(
 			function() {
@@ -298,6 +310,7 @@
 		$("#cancelTimeFinish").val(e);
 		$("#idCancelCalendar").val(t);
 	}
+	
 </script>
 <%@include file="../modal/registerCalendar.jsp"%>
 <%@include file="../modal/deleteCaculatorFree.jsp"%>

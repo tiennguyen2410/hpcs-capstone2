@@ -1,15 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<link rel="stylesheet"
+	href="${pageContext.servletContext.contextPath}/css/fullcalendar.css">
 <%@include file="../layouts/header.jsp"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.BEAN.Calendar"%>
 <div id="wrap">
-	<button onclick="cailol()">ccccccc</button>
-	<input id="heloo">
+<button type="button" onclick="showModalBookCaregiverCalendar()">Đặt Lịch</button>
 	<div id="calendar"></div>
+
 	<div style="clear: both"></div>
 </div>
 <%@include file="../layouts/footer.jsp"%>
+<script
+	src="${pageContext.servletContext.contextPath}/js/fullcalendar.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/js/jquery-ui.custom.min.js"></script>
 <script>
 	$(document).ready(
 			function() {
@@ -80,7 +86,7 @@
 							selectHelper : true,
 							eventClick : function(calEvent) {
 								// change the border color just for fun
-								var a = $('#heloo').val().search(calEvent.id);
+								var a = $('#idCalendarStr').val().search(calEvent.id);
  								if(a>=0){ // da ton tai
  									$(this).css('border-color', 'White');
  								} 
@@ -146,29 +152,60 @@
 		var s =day.getYear()+1900+"-"+(parseInt(day.getMonth())+1)+"-"+day.getDate()+" "+day.getHours()+":"+day.getMinutes();
 		return s;
 		}
+	
 	function addListCalendar(calEvent){
-		var a = $('#heloo').val().search(calEvent.id);
-		if(a>=0){ // id da ton tai trong list
+		start = convertDate(calEvent.start)
+		end = convertDate(calEvent.end)
+		var text = "/"+calEvent.id+"_"+start+"_"+end
+		var a = $('#idCalendarStr').val().search(text);
+		if(a>=0){ //  da ton tai trong list
 			//$(this).css('border-color', 'White');
-			var s = $('#heloo').val().substr(0,a) 
-			+ $('#heloo').val().substr(a+(calEvent.id+'').length,$('#heloo').val().length-(calEvent.id+'').length);
-			$('#heloo').val(s);
+			var s = $('#idCalendarStr').val().substr(0,a) 
+			+ $('#idCalendarStr').val().substr(a+(text+'').length,$('#idCalendarStr').val().length-(text+'').length);
+			$('#idCalendarStr').val(s);
 		}
 		else{
-			$('#heloo').val($('#heloo').val()+" "+calEvent.id);
+			$('#idCalendarStr').val($('#idCalendarStr').val()+" "+text);
 		}
-		$('#heloo').val($('#heloo').val().trim());
+		$('#idCalendarStr').val($('#idCalendarStr').val());
 	}
-	function cailol(){
+	function convertDate(day) {
+		var s =day.getYear()+1900+"-"+(parseInt(day.getMonth())+1)+"-"+day.getDate()+" "+day.getHours()+":"+day.getMinutes();
+		return s;
+		}
+	//delete free calendar
+	function showModalBookCaregiverCalendar(){
+		var a=$('#idCalendarStr').val().split("/");
 		
-		a=document.getElementsByClassName('fc-event-title');
-		a[0].click();
-		a[1].click();
-		a[2].click();
-		a[3].click();
-		a[4].click();
-		a[5].click();
-		a[6].click();
+		if(a.length==1){
+			alert("No caregiver has been chosen");
+			return false;
+		}
+		$('#bookCalendarModal').modal('show');
+		a.splice(0,1);
+		
+		var dataTable=""
+		var s = new Date();
+		var e = new Date();
+		var promose = 0.0;
+		for (i = 0, len = a.length; i < len; i++) {
+			var x = a[i].split("_");
+			s.setHours(x[1].split(" ")[1].split(":")[0],x[1].split(" ")[1].split(":")[1],0);
+			e.setHours(x[2].split(" ")[1].split(":")[0],x[2].split(" ")[1].split(":")[1],0);
+			
+			// add id va thanh` tien vao 1 the input,don gia mac dinh la 10k 1h
+			dongia=10000
+			var h=  (e-s)/3600000*dongia;
+			var id_thanhtien=x[0]+"_"+h*dongia;
+			promose +=h;
+			$('#id_promotion').val($('#id_promotion').val()+" "+id_thanhtien);
+			dataTable+="<tr> <td> <input id=\"idCancelCalendar\" name=\"idCancelCalendar\"hidden=\"hidden\" value=\""+x[0]+"\" > <input id=\"timeStart\" name=\"timeStart\" class=\"form-control\" value=\""+x[1]+"\" readonly> </td> <td> <input id=\"timeEnd\" name=\"timeFinish\" class=\"form-control\" value=\""+x[2]+"\" readonly> </td> <td><input class=\"form-control\" value=\""+h+" VND"+"\" readonly></td> </tr> "		  
+			}
+		$('#total_price').text("TOTAL: "+promose +" VND");
+		
+		document.getElementById("dumTable").innerHTML = dataTable;
+		console.log(a);
+		return true;
 	}
 	
 </script>

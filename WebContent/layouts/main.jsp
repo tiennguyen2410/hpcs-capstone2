@@ -5,7 +5,6 @@
 <%@include file="../layouts/slide.jsp"%>
 <!-- home page -->
 <div class="container text-center">
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#bookCalendarModal">Open Modal</button>
 	<h1>HOME PATIENT CARE SERVICE</h1>
 	<div class="row">
 		<div class="col-sm-4">
