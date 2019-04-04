@@ -1683,15 +1683,51 @@ scale
 	cursor: pointer;
 }
 
-.sign-in-modal, .register-calendar-modal {
+.sign-in-modal {
 	margin-top: 50px;
 	padding: 3em;
 	line-height: 1.5em;
 }
 
 .register-calendar-modal {
-	background-color: #fff;
+	margin: 100px auto;
+	padding: 10px;
+	line-height: 1.5em;
+	background-color: #2aacf1;
+	width: 500px;
+	height: 200px;
+}
+
+.success-information-calendar-modal {
+	margin: 100px auto;
+	padding: 10px;
+	line-height: 1.5em;
+	background-color: #228B22;
+	width: 500px;
+	height: 100px;
+}
+
+.fail-information-calendar-modal {
+	margin: 100px auto;
+	padding: 10px;
+	line-height: 1.5em;
+	background-color: #F08080;
+	width: 500px;
+	height: 100px;
+}
+
+.modal-title {
+	color: #fff;
+	font-size: 20px;
+	padding: 20px;
 	text-align: center;
+}
+
+.modal-body {
+	background-color: #fff;
+	width: 500px;
+	height: auto;
+	margin: -10px;
 }
 
 #wrap {
@@ -1962,6 +1998,10 @@ li a:hover {
 }
 
 .advanced-search {
+	display: none;
+}
+
+.other-infor, .close-other-infor-toggle {
 	display: none;
 }
 

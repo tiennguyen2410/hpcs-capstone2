@@ -5,34 +5,32 @@
 	<div class="container-fluid">
 		<div class="register-calendar-modal">
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			<form action="CalendarServlet" method="post" id="addSchedule">
+			<p class="modal-title">
+				<span class="glyphicon glyphicon-info-sign"></span>Do you want to
+				<i>delete</i> at the time below
+			</p>
+			<form action="CalendarServlet" method="post" id="addSchedule"
+				onsubmit="return confirm('Are you sure delete this calendar?');">
 				<input id="idCaculator" name="idCaculator" hidden="hidden">
-				<h1>Do you want to delete calendar at the time below</h1>
-				<div class="row">
-					<div class="col-md-4">
-						<label class="control-label col-sm-4">Time start at</label>
-						<div class="col-sm-8">
-							<input id="deleteTimeStart" name="timeStart" class="form-control">
-						</div>
+				<div class="row modal-body">
+					<div class="form-group">
+						<label>Time start at</label> <input id="deleteTimeStart"
+							name="timeStart" class="form-control">
 					</div>
-					<div class="col-md-4">
-						<label class="control-label col-sm-4">Time end at</label>
-						<div class="col-sm-8">
-							<input id="deleteTimeFinish" name="timeFinish"
-								class="form-control">
-						</div>
+					<div class="form-group">
+						<label>Time end at</label> <input id="deleteTimeFinish"
+							name="timeFinish" class="form-control">
 					</div>
-					<div class="col-md-3">
-						<input id="note" name="note" class="form-control"
-							placeholder="Enter note">
-					</div>
-					<div class="col-md-1">
+					<div class="pull-right">
 						<button type="submit" value="delete" name="submit"
 							class="btn btn-success form-control">Delete</button>
 					</div>
+					<div class="pull-left">
+						<button type="button" class="btn btn-danger form-control"
+							data-dismiss="modal">Close</button>
+					</div>
 				</div>
 			</form>
-			<div class="row">Hiện thị lỗi khi update ở form này</div>
 		</div>
 	</div>
 </div>

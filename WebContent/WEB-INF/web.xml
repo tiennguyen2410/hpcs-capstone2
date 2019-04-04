@@ -39,7 +39,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>HienThiCaregiverServlet</servlet-name>
-    <url-pattern>/hienthicaregiver</url-pattern>
+    <url-pattern>/hienThicaregiver</url-pattern>
   </servlet-mapping>
    <servlet>
     <description></description>

@@ -2,6 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="model.BEAN.Calendar"%>
+<link rel="stylesheet"
+	href="${pageContext.servletContext.contextPath}/css/fullcalendar.css">
+<!--  loi css dong  -->
+<!-- <link rel="stylesheet" href="../css/fullcalendar.print.css"> -->
 <%@include file="../layouts/header.jsp"%>
 <%@ page import="model.DAO.TestThemLich"%>
 <div id="wrap">
@@ -9,6 +13,10 @@
 	<div style="clear: both"></div>
 </div>
 <%@include file="../layouts/footer.jsp"%>
+<script
+	src="${pageContext.servletContext.contextPath}/js/fullcalendar.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/js/jquery-ui.custom.min.js"></script>
 <script>
 	$(document).ready(
 			function() {
@@ -247,6 +255,25 @@
 		}
 		return true;
 	}
+	//tesc check submit cho update :
+		function testcheckFormUpdate(){		
+		s = document.getElementById("updateTimeStart").value;
+		e = document.getElementById("updateTimeFinish").value;
+		if(checkValidDate(s)==false){
+			$("#timeStart").focus();
+			return false;
+		}
+		else{
+			if(checkValidDate(e)==false){
+				$("#timeEnd").focus();
+				return false;
+			}
+			else{
+				return checkValidTwoDate(s,e);
+				}
+		}
+		return true;
+	}
 	//check ngay co hop le khong
 	function checkValidDate(date){
 		//check format yyyy-mm-dd hh:mm
@@ -287,6 +314,7 @@
 		$("#deleteTimeStart").val(s);
 		$("#deleteTimeFinish").val(e);
 		$("#idCaculator").val(calEvent.id);
+		showSuccessNotificationActionCalendar();
 	}
 	// cancel calendar of customer
 	function showModalCancelCalendar(calEvent){
@@ -297,9 +325,32 @@
 		$("#cancelTimeStart").val(s);
 		$("#cancelTimeFinish").val(e);
 		$("#idCancelCalendar").val(t);
+		showFailNotificationActionCalendar();
 	}
+	
+	function showSuccessNotificationActionCalendar() {
+		//thanh cong
+		var content = 'noi dung';
+		var check = 0;
+		if (check==1){
+			$('#successNotificationActionCalendar').modal('show');
+			setTimeout(function() {
+		    	$('#successNotificationActionCalendar').modal('hide');
+			}, 5000);
+		} 
+		//that bai
+		else if (check==-1) {
+			$('#failNotificationActionCalendar').modal('show');
+			setTimeout(function() {
+			    $('#failNotificationActionCalendar').modal('hide');
+			}, 5000);
+		}
+	}
+	
+
 </script>
 <%@include file="../modal/registerCalendar.jsp"%>
 <%@include file="../modal/deleteCaculatorFree.jsp"%>
 <%@include file="../modal/updateCaculatorFree.jsp"%>
 <%@include file="../modal/cancelCalendar.jsp"%>
+<%@include file="../modal/notificationActionCalendar.jsp"%>

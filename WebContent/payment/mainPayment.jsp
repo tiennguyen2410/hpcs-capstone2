@@ -15,7 +15,7 @@
 				<div class="process-step">
 					<button type="button" class="btn btn-default btn-step"
 						data-toggle="tab" href="#paymentMenu02">
-						<p>MY SCHEDULE</p>
+						<p>MY CALENDAR</p>
 					</button>
 				</div>
 				<div class="process-step">

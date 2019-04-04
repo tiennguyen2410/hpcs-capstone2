@@ -98,6 +98,24 @@ public class CalendarDAO {
 	}
 	public void updateCaculatorFree(String id,String start, String finish) {
 		String sql = "UPDATE `capstone2`.`calendar` SET `START_DATE`='"+start+"', `FINISH_DATE`='"+finish+"' WHERE `ID_CALENDAR`='"+id+"';";
+		System.out.println(sql);
+		try {
+			Statement stmt;
+			try {
+				stmt = MySQLConnUtils.getMySQLConnection().createStatement();
+				stmt.executeUpdate(sql);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void cancelCalendarCustomer(String id) {
+		String sql = "UPDATE `capstone2`.`calendar` SET `ADDRESS`='FREETIME', `ID_CUSTOMER`=NULL, `MONEY`=NULL, `INTO_MONEY`=NULL, `PROMOTION`=NULL WHERE `ID_CALENDAR`='"+id+"';";
+		System.out.println(sql);
 		try {
 			Statement stmt;
 			try {
@@ -128,7 +146,24 @@ public class CalendarDAO {
 			e.printStackTrace();
 		}
 	}
+	public void bookCaregiverCalendar(String id,String address, String idCustomer,String money,String intoMoney,String promotion) {
+		String sql = "UPDATE `capstone2`.`calendar` SET `ADDRESS`='"+address+"', `ID_CUSTOMER`='"+idCustomer+"',  `MONEY`='"+money+"', `INTO_MONEY`='"+intoMoney+"',`PROMOTION`='"+promotion+"' WHERE `ID_CALENDAR`='"+id+"';";
+		System.out.println("book");
+		System.out.println(sql);
+		try {
+			Statement stmt;
+			try {
+				stmt = MySQLConnUtils.getMySQLConnection().createStatement();
+				stmt.executeUpdate(sql);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	public static void main(String[] args) {
 		System.out.println(new CalendarDAO().getCalendar("2"));
 	}

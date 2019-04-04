@@ -28,3 +28,4 @@
 	</div>
 </div>
 <%@include file="../layouts/footer.jsp"%>
+<%@include file="../modal/bookCaregiverCalendar.jsp"%>
