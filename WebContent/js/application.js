@@ -63,3 +63,16 @@ $(document).ready(function(){
 		$('#close-other-infor-toggle').hide();
 	});
 });
+
+$(document).ready(function(){
+	$('#show-comment').click(function(){
+		$('#comment-info').show();
+		$('#hide-comment').show();
+		$('#show-comment').hide();
+	});
+	$('#hide-comment').click(function(){
+		$('#comment-info').hide();
+		$('#hide-comment').hide();
+		$('#show-comment').show();
+	});
+});

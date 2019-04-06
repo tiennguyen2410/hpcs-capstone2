@@ -1,10 +1,14 @@
 <%@page import="java.util.List"%>
 <%@page import="model.DAO.CaregiverDAO"%>
+<%@page import="model.DAO.RateDAO"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../layouts/header.jsp"%>
 <%@include file="../layouts/slide.jsp"%>
 <%@page import="model.BEAN.Caregiver"%>
+<%@page import="model.BEAN.Rate"%>
 <%@page import="java.util.ArrayList"%>
 <!-- hire page -->
 <div class="container text-center">
@@ -67,8 +71,19 @@
 		</div>
 	</div>
 	<%
+		Map<Integer, Rate> map = (Map<Integer, Rate>) request.getAttribute("listRate");
+		Set<Integer> set = map.keySet();
+
 		ArrayList<Caregiver> listCaregiver = (ArrayList<Caregiver>) request.getAttribute("ccc");
 		for (Caregiver caregiver : listCaregiver) {
+			int s1 = map.get(caregiver.getId_Account()).getStar_1();
+			int s2 = map.get(caregiver.getId_Account()).getStar_2();
+			int s3 = map.get(caregiver.getId_Account()).getStar_3();
+			int s4 = map.get(caregiver.getId_Account()).getStar_4();
+			int s5 = map.get(caregiver.getId_Account()).getStar_5();
+
+			double temp = (s1 + s2 * 2 + s3 * 3 + s4 * 4 + s5 * 5) * 1.0 / (s1 + s2 + s3 + s4 + s5);
+			double sum_star = Math.ceil(temp * 10) / 10;
 	%>
 	<div class="col-md-3">
 		<div class="container-info">
@@ -78,7 +93,17 @@
 			<div class="overlay"></div>
 			<div class="button">
 				<a type="button" data-toggle="modal"
-					data-target="#caregiverInformationModal">Detail</a>
+					data-target="#caregiverInformationModal"
+					data-id_caregiver=<%=caregiver.getId_Account() %>
+					data-name_caregiver="<%=caregiver.getName()%>"
+					data-describle="<%=caregiver.getDescribe()%>"
+					data-star_1=<%=map.get(caregiver.getId_Account()).getStar_1() %>
+					data-star_2=<%=map.get(caregiver.getId_Account()).getStar_2() %>
+					data-star_3=<%=map.get(caregiver.getId_Account()).getStar_3() %>
+					data-star_4=<%=map.get(caregiver.getId_Account()).getStar_4() %>
+					data-star_5=<%=map.get(caregiver.getId_Account()).getStar_5() %>
+					data-sum_star=<%=sum_star%>
+					data-src_caregiver="<%=request.getContextPath()%>/image/<%=caregiver.getAvatar()%>">Detail</a>
 			</div>
 			<h3><%=caregiver.getName()%></h3>
 			<div class="rating">
@@ -88,6 +113,7 @@
 					class="glyphicon glyphicon-star"> </span><span
 					class="glyphicon glyphicon-star-empty"></span>
 			</div>
+			<h4><%=sum_star%></h4>
 			<h4><%=caregiver.getName_education()%></h4>
 			<div class="col-md-6 text-left">hire cost: free</div>
 			<div class="col-md-6 text-right">109 hired</div>

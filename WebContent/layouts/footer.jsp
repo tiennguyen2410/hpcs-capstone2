@@ -25,4 +25,6 @@
 	src="${pageContext.servletContext.contextPath}/js/fullcalendar.js"></script>
 <script
 	src="${pageContext.servletContext.contextPath}/js/jquery-ui.custom.min.js"></script>
+<script
+	src="${pageContext.servletContext.contextPath}/js/jquery.rateyo.js"></script>
 </html>
