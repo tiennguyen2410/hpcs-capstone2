@@ -39,7 +39,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>HienThiCaregiverServlet</servlet-name>
-    <url-pattern>/hienThicaregiver</url-pattern>
+    <url-pattern>/hienthicaregiver</url-pattern>
   </servlet-mapping>
    <servlet>
     <description></description>
@@ -50,5 +50,15 @@
   <servlet-mapping>
     <servlet-name>viewCaregiverCalendarServlet</servlet-name>
     <url-pattern>/viewCaregiverCalendarServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PersonalCustomerCalendarServlet</display-name>
+    <servlet-name>PersonalCustomerCalendarServlet</servlet-name>
+    <servlet-class>controller.PersonalCustomerCalendarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PersonalCustomerCalendarServlet</servlet-name>
+    <url-pattern>/PersonalCustomerCalendarServlet</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -7,9 +7,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.BEAN.Calendar"%>
 <div id="wrap">
-<button type="button" onclick="showModalBookCaregiverCalendar()">Đặt Lịch</button>
 	<div id="calendar"></div>
-
 	<div style="clear: both"></div>
 </div>
 <%@include file="../layouts/footer.jsp"%>
@@ -70,7 +68,20 @@
 							firstDay : 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
 							selectable : true,
 							defaultView : 'agendaWeek',
-
+							select : function(start, end, allDay) {
+								
+								var s =convertDate(start);
+								var e = convertDate(end);
+								if(checkPastDate(s)){
+									alert('ok');
+									$("#timeStart").val(s);
+									$("#timeEnd").val(e);
+									var title='Free Time';
+									$('#addSchedule').submit(function() {
+										  // your code here
+										});
+								}
+								},
 							axisFormat : 'h:mm',
 							columnFormat : {
 								month : 'ddd', // Mon
@@ -86,24 +97,9 @@
 							allDaySlot : false,
 							selectHelper : true,
 							eventClick : function(calEvent) {
-								if(checkPastDate(convertDate(calEvent.start)))
-									{
-									if(calEvent.className=='free'){
-										var a = $('#idCalendarStr').val().search(calEvent.id);
-		 								if(a>=0){ // da ton tai
-		 									$(this).css('border-color', 'White');
-		 								} 
-		 								else{
-		 									$(this).css('border-color', 'Red');
-		 								}
-		 								addListCalendar(calEvent);
-									}
-									else{
+								if(checkPastDate(convertDate(calEvent.start))){
 										showModalCancelCaregiverCalendar(calEvent);
 									}
-									}
-								
- 								
 							},
 							droppable : true, // this allows things to be dropped onto the calendar !!!
 							drop : function(date, allDay) { // this function is called when something is dropped
@@ -161,61 +157,6 @@
 		var s =day.getYear()+1900+"-"+(parseInt(day.getMonth())+1)+"-"+day.getDate()+" "+day.getHours()+":"+day.getMinutes();
 		return s;
 		}
-	
-	function addListCalendar(calEvent){
-		start = convertDate(calEvent.start)
-		end = convertDate(calEvent.end)
-		var text = "/"+calEvent.id+"_"+start+"_"+end
-		var a = $('#idCalendarStr').val().search(text);
-		if(a>=0){ //  da ton tai trong list
-			//$(this).css('border-color', 'White');
-			var s = $('#idCalendarStr').val().substr(0,a) 
-			+ $('#idCalendarStr').val().substr(a+(text+'').length,$('#idCalendarStr').val().length-(text+'').length);
-			$('#idCalendarStr').val(s);
-		}
-		else{
-			$('#idCalendarStr').val($('#idCalendarStr').val()+" "+text);
-		}
-		$('#idCalendarStr').val($('#idCalendarStr').val());
-	}
-	function convertDate(day) {
-		var s =day.getYear()+1900+"-"+(parseInt(day.getMonth())+1)+"-"+day.getDate()+" "+day.getHours()+":"+day.getMinutes();
-		return s;
-		}
-	//delete free calendar
-	function showModalBookCaregiverCalendar(){
-		var a=$('#idCalendarStr').val().split("/");
-		
-		if(a.length==1){
-			alert("No caregiver has been chosen");
-			return false;
-		}
-		$('#bookCalendarModal').modal('show');
-		a.splice(0,1);
-		
-		var dataTable=""
-		var s = new Date();
-		var e = new Date();
-		var promose = 0.0;
-		for (i = 0, len = a.length; i < len; i++) {
-			var x = a[i].split("_");
-			s.setHours(x[1].split(" ")[1].split(":")[0],x[1].split(" ")[1].split(":")[1],0);
-			e.setHours(x[2].split(" ")[1].split(":")[0],x[2].split(" ")[1].split(":")[1],0);
-			
-			// add id va thanh` tien vao 1 the input,don gia mac dinh la 10k 1h
-			dongia=10000
-			var h=  (e-s)/3600000*dongia;
-			var id_thanhtien=x[0]+"_"+h*dongia;
-			promose +=h;
-			$('#id_promotion').val($('#id_promotion').val()+" "+id_thanhtien);
-			dataTable+="<tr> <td> <input id=\"idCancelCalendar\" name=\"idCancelCalendar\"hidden=\"hidden\" value=\""+x[0]+"\" > <input id=\"timeStart\" name=\"timeStart\" class=\"form-control\" value=\""+x[1]+"\" readonly> </td> <td> <input id=\"timeEnd\" name=\"timeFinish\" class=\"form-control\" value=\""+x[2]+"\" readonly> </td> <td><input class=\"form-control\" value=\""+h+" VND"+"\" readonly></td> </tr> "		  
-			}
-		$('#total_price').text("TOTAL: "+promose +" VND");
-		
-		document.getElementById("dumTable").innerHTML = dataTable;
-		console.log(a);
-		return true;
-	}
 	// cancel calendar of caregiver
 	function showModalCancelCaregiverCalendar(calEvent){
 		var s =convertDate(calEvent.start);
@@ -225,6 +166,8 @@
 		$("#cancelTimeStart").val(s);
 		$("#cancelTimeFinish").val(e);
 		$("#idCancelCaregiverCalendar").val(t);
+		$('#idCancelCaregiverForm').attr('action', 'PersonalCustomerCalendarServlet');
+		$("#idthue").show();
 	}
 	// ngay trong qua khu ko cho chinh sua
 	function checkPastDate(date){ // kiem tra ngay trong qua khu, neu trong qua khu la false
@@ -255,7 +198,7 @@
 	
 	}
 	$( document ).ready(function() {
-		$(document).find("title").text("Lịch Cá Nhân Của Caregiver,customer xem de thue/huy lich ");
+		$(document).find("title").text("Lịch Cá Nhân Của khach hang ");
 		<%if(request.getAttribute("status")!=null){%>
 			var status = '<%=((String)request.getAttribute("status"))%>'; 
 			var check = status.substring(0,1);
@@ -280,7 +223,11 @@
 		} 
 		<%}%> 
 	});
+	function thue(){
+		
+		$('#searchCaregiverCalendarModal').modal('show');
+	}
 </script>
-<%@include file="../modal/bookCaregiverCalendar.jsp"%>
 <%@include file="../modal/cancelCagiverCalendar.jsp"%>
 <%@include file="../modal/notificationActionCalendar.jsp"%>
+<%@include file="../modal/searchCaregiverCalendar.jsp"%>

@@ -1,17 +1,25 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="java.util.ArrayList"%>
+
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="model.BEAN.Calendar"%>
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/css/fullcalendar.css">
+
 <!--  loi css dong  -->
 <!-- <link rel="stylesheet" href="../css/fullcalendar.print.css"> -->
 <%@include file="../layouts/header.jsp"%>
 <%@ page import="model.DAO.TestThemLich"%>
 <div id="wrap">
+
 	<div id="calendar"></div>
+
 	<div style="clear: both"></div>
 </div>
+
 <%@include file="../layouts/footer.jsp"%>
 <script
 	src="${pageContext.servletContext.contextPath}/js/fullcalendar.js"></script>
@@ -66,6 +74,7 @@
 // 								$(this).css('border-color', 'red');
 								showModalClick(calEvent);
 							},
+						    
 							eventResize: function(event, delta, revertFunc) {
 								updateCaculatorFree(event.start,event.end,event.id);
 							   
@@ -98,17 +107,14 @@
 							allDaySlot : false,
 							selectHelper : true,
 							select : function(start, end, allDay) {
+							
 							var s =convertDate(start);
 							var e = convertDate(end);
-		$('#registerCalendarModal').modal('show');
-		$("#timeStart").val(s);
-		$("#timeEnd").val(e);
-		
-		
-		
-								
+							if(checkPastDate(s)){
+								$('#registerCalendarModal').modal('show');
+								$("#timeStart").val(s);
+								$("#timeEnd").val(e);
 								var title='Free Time';
-								
 								$('#addSchedule').submit(function() {
 									  // your code here
 									});
@@ -121,7 +127,8 @@
 // 									}, true // make the event "stick"
 // 									);
 // 								}
-								calendar.fullCalendar('unselect');
+									calendar.fullCalendar('unselect');
+							}
 							},
 							
 							droppable : true, // this allows things to be dropped onto the calendar !!!
@@ -156,6 +163,9 @@
 							},
 							eventDragStop: //sau khi keo tha
 								function(event){
+								if(checkPastDate(convertDate(event.start))){
+									
+								}
 								updateCaculatorFreeOld(event.start,event.end);
 								
 							},
@@ -173,17 +183,23 @@
 											end : new Date(<%=calendar.get(i).getFinishDate().substring(0, 4)%>, <%=Integer.parseInt(calendar.get(i).getFinishDate().substring(5, 7)) - 1%>,
 													<%=calendar.get(i).getFinishDate().substring(8, 10)%>,<%=calendar.get(i).getFinishDate().substring(11, 13)%>, <%=calendar.get(i).getFinishDate().substring(14, 16)%>),
 											allDay : false,
-											<%if (calendar.get(i).getId_customer() != 0) {%>
-											 editable : false,
-											className : 'info'
-												<%} else {%>
-												className : 'free'
-											<%}%>
+											<%
+											Date a = new Date(Integer.parseInt(calendar.get(i).getStartDate().substring(0, 4))-1900,
+													Integer.parseInt(calendar.get(i).getStartDate().substring(5, 7))-1,
+													Integer.parseInt(calendar.get(i).getStartDate().substring(8, 10)),
+													Integer.parseInt(calendar.get(i).getStartDate().substring(11, 13)),
+													Integer.parseInt(calendar.get(i).getStartDate().substring(14, 16))) ;
+											if (calendar.get(i).getId_customer() != 0) {%>
+												editable : false,
+												className : 'info'
+											<%} else {
+													if(a.getTime() < new Date().getTime() ){%>
+														editable : false,
+													<%}%>
+													className : 'free'
+												<%}%>
 											 // thay doi ten class se cho mau` khac
 										}, 
-								 
-								 
-								 
 								<%}%>
 							{} ],
 						});
@@ -237,7 +253,35 @@
 		}
 		return true; 
 	}
-	function testcheckForm(){		
+	// ngay trong qua khu ko cho chinh sua
+	function checkPastDate(date){ // kiem tra ngay trong qua khu, neu trong qua khu la false
+		<%LocalDateTime a = LocalDateTime.now();
+			String date = a.getYear() + "-" + a.getMonthValue() + "-" + a.getDayOfMonth() + " " + a.getHour() + ":"
+					+ a.getMinute();%>
+		var arrEnd=date.split(" ");
+		if(new Date('<%=a.getYear() + "-" + a.getMonthValue() + "-" + a.getDayOfMonth()%>')>new Date(arrEnd[0])){
+			return false;
+		}
+		else{
+			if(new Date('<%=a.getYear() + "-" + a.getMonthValue() + "-" + a.getDayOfMonth()%>').getTime()==new Date(arrEnd[0]).getTime()){
+				if(parseInt(<%=a.getHour()%>)>parseInt(arrEnd[1].split(":")[0])){
+					return false;
+				}
+				else{
+					if(<%=a.getHour()%>==arrEnd[1].split(":")[0]){
+						
+						if(parseInt(<%=a.getMinute()%>)>=parseInt(arrEnd[1].split(":")[1])){
+							return false;
+						}
+					}
+				}
+			}
+			else return true;
+		}
+		return true; 
+	
+	}
+	function testcheckForm(){ // check bam them 
 		s = document.getElementById("timeStart").value;
 		e = document.getElementById("timeEnd").value;
 		if(checkValidDate(s)==false){
@@ -250,8 +294,18 @@
 				return false;
 			}
 			else{
-				return checkValidTwoDate(s,e);
+					if(!checkValidTwoDate(s,e)){
+					return false;
+					}
 				}
+		}
+		if(s.split(" ")[0]!=e.split(" ")[0]){
+			alert('chi duoc dang ki cung 1 ngay');
+			return false;
+		}
+		if(!checkPastDate(s)){ // true la hien tai,co the them
+			alert('khong the them 1 ngay trong qua khu!');
+			return false;
 		}
 		return true;
 	}
@@ -269,8 +323,18 @@
 				return false;
 			}
 			else{
-				return checkValidTwoDate(s,e);
+				if(!checkValidTwoDate(s,e)){
+					return false;
 				}
+				}
+		}
+		if(s.split(" ")[0]!=e.split(" ")[0]){
+			alert('chi duoc dang ki cung 1 ngay');
+			return false;
+		}
+		if(!checkPastDate(s)){ // true la hien tai,co the them
+			alert('khong the sua thanh` 1 ngay trong qua khu!');
+			return false;
 		}
 		return true;
 	}
@@ -294,16 +358,22 @@
 			alert(date+' phut khong hop le');
 			return false;
 		}
+		if(day[0].split("-")[0]>2019){
+			alert('Invalid date and time error (maximum 31/12/2020)!');
+			return false;
+		}
 		return true;
 	}
 	
 	// event when click 1 lich
 	function showModalClick(calEvent){
-		if(calEvent.title=="FREETIME"){
-			showModalDeleteCalendar(calEvent);
-		}
-		else{
-			showModalCancelCalendar(calEvent);
+		if(checkPastDate(convertDate(calEvent.start))){
+			if(calEvent.title=="FREETIME"){
+				showModalDeleteCalendar(calEvent);
+			}
+			else{
+				showModalCancelCalendar(calEvent);
+			}
 		}
 	}
 	//delete free calendar
@@ -314,7 +384,6 @@
 		$("#deleteTimeStart").val(s);
 		$("#deleteTimeFinish").val(e);
 		$("#idCaculator").val(calEvent.id);
-		showSuccessNotificationActionCalendar();
 	}
 	// cancel calendar of customer
 	function showModalCancelCalendar(calEvent){
@@ -325,29 +394,34 @@
 		$("#cancelTimeStart").val(s);
 		$("#cancelTimeFinish").val(e);
 		$("#idCancelCalendar").val(t);
-		showFailNotificationActionCalendar();
 	}
-	
-	function showSuccessNotificationActionCalendar() {
-		//thanh cong
-		var content = 'noi dung';
-		var check = 0;
-		if (check==1){
-			$('#successNotificationActionCalendar').modal('show');
+	$( document ).ready(function() {
+		$(document).find("title").text("Lịch Cá Nhân Của Caregiver ");
+		<%if(request.getAttribute("status")!=null){%>
+			var status = '<%=((String)request.getAttribute("status"))%>'; 
+			var check = status.substring(0,1);
+			var content=status.substring(2,status.length);
+		 if (check==1){
+			document.getElementById("information-calendar-modal").style.backgroundColor = "green";
+			document.getElementById("content-check").innerHTML = content;
+			$('#notificationActionCalendar').modal('show');
 			setTimeout(function() {
-		    	$('#successNotificationActionCalendar').modal('hide');
-			}, 5000);
+		    	$('#notificationActionCalendar').modal('hide');
+			}, 1000);
 		} 
-		//that bai
-		else if (check==-1) {
-			$('#failNotificationActionCalendar').modal('show');
+		
+		
+		else if (check==2) {
+			document.getElementById("information-calendar-modal").style.backgroundColor = "red";
+			document.getElementById("content-check").innerHTML = content;
+			$('#notificationActionCalendar').modal('show');
 			setTimeout(function() {
-			    $('#failNotificationActionCalendar').modal('hide');
-			}, 5000);
-		}
-	}
+			    $('#notificationActionCalendar').modal('hide');
+			}, 1000);
+		} 
+		<%}%> 
+	});
 	
-
 </script>
 <%@include file="../modal/registerCalendar.jsp"%>
 <%@include file="../modal/deleteCaculatorFree.jsp"%>

@@ -8,8 +8,8 @@ import model.DAO.CalendarDAO;
 public class CalendarBO {
 
 	CalendarDAO dao = new CalendarDAO();
-	public ArrayList<Calendar> getListCalendar() {
-		return dao.getListCalendar();
+	public ArrayList<Calendar> getListCalendar(int idCaregiver) {
+		return dao.getListCalendar(idCaregiver);
 	}
 	public void addCaculatorFree(String start, String finish, String address,int id ) {
 		dao.addCaculatorFree(start, finish, address, id);
@@ -23,7 +23,7 @@ public class CalendarBO {
 	public Calendar getCalendar(String id) {
 		return dao.getCalendar(id);
 	}
-	public ArrayList<Calendar> getListCalendar(String idCaregiver,String idCustomer) {
+	public ArrayList<Calendar> getListCalendar(int idCaregiver,int idCustomer) {
 		return dao.getListCalendar(idCaregiver,idCustomer);
 	}
 	public void cancelCalendarCustomer(String id) {
@@ -31,5 +31,11 @@ public class CalendarBO {
 	}
 	public void bookCaregiverCalendar(String id,String address, String idCustomer,String money,String intoMoney,String promotion) {
 		dao.bookCaregiverCalendar(id, address, idCustomer, money, intoMoney, promotion);
+	}
+	public boolean checkOverlapTime(String startTime,String endTime,int idCaregiver,int idCalendar) {
+		return dao.checkOverlapTime(startTime, endTime,idCaregiver,idCalendar);
+	}
+	public ArrayList<Calendar> getListCustomerCalendar(int idCustomer){
+		return dao.getListCustomerCalendar(idCustomer);
 	}
 }

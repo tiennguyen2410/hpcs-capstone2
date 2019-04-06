@@ -15,11 +15,11 @@
 				<div class="row modal-body">
 					<div class="form-group">
 						<label>Time start at</label> <input id="deleteTimeStart"
-							name="timeStart" class="form-control">
+							name="timeStart" class="form-control" disabled>
 					</div>
 					<div class="form-group">
 						<label>Time end at</label> <input id="deleteTimeFinish"
-							name="timeFinish" class="form-control">
+							name="timeFinish" class="form-control" disabled>
 					</div>
 					<div class="pull-right">
 						<button type="submit" value="delete" name="submit"
