@@ -314,7 +314,7 @@
 		$("#deleteTimeStart").val(s);
 		$("#deleteTimeFinish").val(e);
 		$("#idCaculator").val(calEvent.id);
-		showSuccessNotificationActionCalendar();
+		showNotificationActionCalendar();
 	}
 	// cancel calendar of customer
 	function showModalCancelCalendar(calEvent){
@@ -325,24 +325,32 @@
 		$("#cancelTimeStart").val(s);
 		$("#cancelTimeFinish").val(e);
 		$("#idCancelCalendar").val(t);
-		showFailNotificationActionCalendar();
+		showNotificationActionCalendar();
 	}
 	
-	function showSuccessNotificationActionCalendar() {
-		//thanh cong
+	function showNotificationActionCalendar() {
+		//Update successfully
+		//Register successfully
+		//Cancel successfully
+		//Delete successfully
 		var content = 'noi dung';
 		var check = 0;
-		if (check==1){
-			$('#successNotificationActionCalendar').modal('show');
+		if (check==0){
+			document.getElementById("information-calendar-modal").style.backgroundColor = "green";
+			document.getElementById("content-check").innerHTML = content;
+			$('#notificationActionCalendar').modal('show');
 			setTimeout(function() {
-		    	$('#successNotificationActionCalendar').modal('hide');
-			}, 5000);
+		    	$('#notificationActionCalendar').modal('hide');
+			}, 50000000);
 		} 
-		//that bai
-		else if (check==-1) {
-			$('#failNotificationActionCalendar').modal('show');
+		//Duplicate date and time error
+		//Invalid date and time error (maximum 31/12/2020)
+		else if (check==1) {
+			document.getElementById("information-calendar-modal").style.backgroundColor = "red";
+			document.getElementById("content-check").innerHTML = content;
+			$('#notificationActionCalendar').modal('show');
 			setTimeout(function() {
-			    $('#failNotificationActionCalendar').modal('hide');
+			    $('#notificationActionCalendar').modal('hide');
 			}, 5000);
 		}
 	}

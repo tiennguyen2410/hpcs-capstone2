@@ -13,6 +13,8 @@
 	href="${pageContext.servletContext.contextPath}/css/jquery.datetimepicker.min.css">
 <link rel="stylesheet"
 	href="${pageContext.servletContext.contextPath}/css/fullcalendar.css">
+<link rel="stylesheet"
+	href="${pageContext.servletContext.contextPath}/css/rateyo.css">
 <title>Home Patient Care Service</title>
 </head>
 <body>

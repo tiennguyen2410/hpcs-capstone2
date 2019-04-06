@@ -114,7 +114,8 @@ footer {
 }
 
 .tab-content {
-	min-height: 500px; overflow : hidden;
+	min-height: 500px;
+	overflow: hidden;
 	background-color: #fff;
 	margin-top: 10px;
 	border-radius: 5px;
@@ -355,6 +356,8 @@ opacity
 
 
 
+
+
 :
 
 
@@ -397,7 +400,9 @@ opacity
 
 
 
+
  
+
 
 
 
@@ -523,7 +528,10 @@ opacity
 
 
 
+
+
 :
+
 
 
 
@@ -607,7 +615,10 @@ opacity
 
 
 
+
 scale
+
+
 
 
 
@@ -774,7 +785,10 @@ transform
 
 
 
+
+
 :
+
 
 
 
@@ -858,7 +872,10 @@ transform
 
 
 
+
 scale
+
+
 
 
 
@@ -1036,6 +1053,8 @@ opacity
 
 
 
+
+
 :
 
 
@@ -1078,7 +1097,9 @@ opacity
 
 
 
+
  
+
 
 
 
@@ -1204,7 +1225,10 @@ opacity
 
 
 
+
+
 :
+
 
 
 
@@ -1288,7 +1312,10 @@ opacity
 
 
 
+
 scale
+
+
 
 
 
@@ -1455,7 +1482,11 @@ transform
 
 
 
+
+
 :
+
+
 
 
 
@@ -1573,6 +1604,8 @@ scale
 
 
 
+
+
 (1);
 }
 }
@@ -1610,6 +1643,16 @@ scale
 	border-right-color: #ddd;
 	border-width: 8px;
 }
+.show-comment {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.hide-comment {
+	display: none;
+	text-decoration: none;
+	cursor: pointer;
+}
 
 .comment-scroll {
 	overflow-y: auto;
@@ -1617,9 +1660,11 @@ scale
 	overflow-x: hidden;
 	white-space: nowrap;
 	height: 200px;
+	
 }
 
 .comment-info {
+	display: none;
 	margin-top: 15px;
 	position: relative;
 	overflow: hidden;
@@ -1698,20 +1743,10 @@ scale
 	height: 200px;
 }
 
-.success-information-calendar-modal {
+#information-calendar-modal {
 	margin: 100px auto;
 	padding: 10px;
 	line-height: 1.5em;
-	background-color: #228B22;
-	width: 500px;
-	height: 100px;
-}
-
-.fail-information-calendar-modal {
-	margin: 100px auto;
-	padding: 10px;
-	line-height: 1.5em;
-	background-color: #F08080;
 	width: 500px;
 	height: 100px;
 }
@@ -1940,11 +1975,10 @@ textarea {
 }
 
 .sidebar {
-	position: fixed;
 	height: 100%;
 	background: #f5f5f5;
 	min-height: 100%;
-	border-left: 5px solid #fff;
+	border-right: 5px solid #fff;
 }
 
 .logo img {
