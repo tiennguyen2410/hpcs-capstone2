@@ -26,4 +26,10 @@ public class CalendarBO {
 	public ArrayList<Calendar> getListCalendar(String idCaregiver,String idCustomer) {
 		return dao.getListCalendar(idCaregiver,idCustomer);
 	}
+	public void cancelCalendarCustomer(String id) {
+		dao.cancelCalendarCustomer(id);
+	}
+	public void bookCaregiverCalendar(String id,String address, String idCustomer,String money,String intoMoney,String promotion) {
+		dao.bookCaregiverCalendar(id, address, idCustomer, money, intoMoney, promotion);
+	}
 }

@@ -43,8 +43,8 @@ public class CalendarServlet extends HttpServlet {
 			if(request.getParameter("submit").equals("cancel")) { //click cancel custome caculator
 				// truoc khi xoa nen chuyen qua table khac de luu du lieu lich cua khach hang
 				//in ra de sao chep lai vo database
-				System.out.println(calendarBO.getCalendar(request.getParameter("idCancelCalendar")));
-				calendarBO.deleteCaculatorFree(request.getParameter("idCancelCalendar"));
+				calendarBO.cancelCalendarCustomer(request.getParameter("idCancelCalendar"));
+				
 			}
 			
 		}

@@ -50,3 +50,16 @@ $(document).ready(function(){
 	$('#timeTo').datetimepicker();
 });
 
+//other address
+$(document).ready(function(){
+	$('#other-infor-toggle').click(function(){
+		$('#other-infor-toggle').hide();
+		$('#other-infor').show();
+		$('#close-other-infor-toggle').show();
+	});
+	$('#close-other-infor-toggle').click(function(){
+		$('#other-infor-toggle').show();
+		$('#other-infor').hide();
+		$('#close-other-infor-toggle').hide();
+	});
+});
