@@ -9,23 +9,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import model.BEAN.Caregiver;
-import model.BO.CaregiverBO;
-
+import model.BEAN.Comment;
+import model.BO.CommentBO;
 
 /**
- * Servlet implementation class HienThiCaregiverServlet
+ * Servlet implementation class CommentServlet
  */
-@WebServlet("/HienThiCaregiverServlet")
-public class HienThiCaregiverServlet extends HttpServlet {
+public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HienThiCaregiverServlet() {
+    public CommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,17 +34,21 @@ public class HienThiCaregiverServlet extends HttpServlet {
 		doPost(request, response);
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-				request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		int id_caregiver = Integer.parseInt(request.getParameter("id_cargiver"));
+		CommentBO cmb = new CommentBO();
+		ArrayList<Comment> listComment = cmb.getCaregiver(id_caregiver);
+		System.out.println("0000000000000"+listComment+" \n----"+listComment.size());
+		request.setAttribute("abc", listComment);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/modal/comment.jsp");
+		rd.forward(request, response);
+		
 
-				//lay danh sach Caregiver
-				ArrayList<Caregiver> listCaregiver ;
-				CaregiverBO caregiverBO = new CaregiverBO();
-				listCaregiver=caregiverBO.getCaregiver();
-				request.setAttribute("ccc", listCaregiver);
-				
-				RequestDispatcher rd = request.getRequestDispatcher("layouts/hire.jsp");
-				rd.forward(request, response);
 	}
 
 }

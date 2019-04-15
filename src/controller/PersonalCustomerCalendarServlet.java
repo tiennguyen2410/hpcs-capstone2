@@ -33,6 +33,9 @@ public class PersonalCustomerCalendarServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if(request.getParameter("ifram")!=null) {
+			request.setAttribute("ifram", request.getParameter("ifram"));
+		}
 		CalendarBO calendarBO = new CalendarBO();
 		// lay danh sach lich ranh cua caregiver va custome theo id 
 		int idCus =123;
@@ -63,6 +66,7 @@ public class PersonalCustomerCalendarServlet extends HttpServlet {
 		ArrayList<Calendar> list = calendarBO.getListCustomerCalendar(idCus);
 		request.setAttribute("calendar", list);
 		request.setAttribute("status", status);
+		System.out.println("clgt"+list);
 		RequestDispatcher rd = request.getRequestDispatcher("/customer/personalCustomerCalendar.jsp");
 		rd.forward(request, response);
 	}

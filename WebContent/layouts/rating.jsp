@@ -2,14 +2,15 @@
 	pageEncoding="UTF-8"%>
 <div class="col-xs-12 col-md-6 text-center">
 	<h1 class="rating-num" id="sum_star"></h1>
-	<div>
-		<div style="clear: both"></div>
-	</div>
+
 	<div class="rateyo-readonly-widg"></div>
-	<div>
+
+
+	<div id="rating-modal">
 		<span class="glyphicon glyphicon-user"></span>
-		1,050,008&nbsp;&nbsp;&nbsp; <span class="glyphicon glyphicon-comment"></span>
-		109
+	</div>
+	<div id="comment-modal">
+		<span class="glyphicon glyphicon-comment"></span>
 	</div>
 </div>
 <div class="col-xs-12 col-md-6">

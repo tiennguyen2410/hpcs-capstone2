@@ -13,7 +13,7 @@
 			</p>
 			<form action="viewCaregiverCalendarServlet" method="post"
 				id="idCancelCaregiverForm"
-				onsubmit="return confirm('huy lich se bi ha uy tin,ban muon huy?');">
+				onsubmit="return confirm('If you cancel it will be deducted for reliability, you can definitely cancel?');">
 				<input id="idCancelCaregiverCalendar"
 					name="idCancelCaregiverCalendar" hidden="hidden">
 				<div class="row modal-body">

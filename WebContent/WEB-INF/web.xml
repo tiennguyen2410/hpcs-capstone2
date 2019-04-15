@@ -61,4 +61,14 @@
     <servlet-name>PersonalCustomerCalendarServlet</servlet-name>
     <url-pattern>/PersonalCustomerCalendarServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SearchCaregiverCalendarServlet</display-name>
+    <servlet-name>SearchCaregiverCalendarServlet</servlet-name>
+    <servlet-class>controller.SearchCaregiverCalendarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SearchCaregiverCalendarServlet</servlet-name>
+    <url-pattern>/SearchCaregiverCalendarServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -6,56 +6,81 @@ public class Rate {
 	private int star_3;
 	private int star_4;
 	private int star_5;
+	private int comment_num;
+
+	public int getComment_num() {
+		return comment_num;
+	}
+
+	public void setComment_num(int comment_num) {
+		this.comment_num = comment_num;
+	}
+
 	public int getStar_1() {
 		return star_1;
 	}
+
 	public void setStar_1(int star_1) {
 		this.star_1 = star_1;
 	}
+
 	public int getStar_2() {
 		return star_2;
 	}
+
 	public void setStar_2(int star_2) {
 		this.star_2 = star_2;
 	}
+
 	public int getStar_3() {
 		return star_3;
 	}
+
 	public void setStar_3(int star_3) {
 		this.star_3 = star_3;
 	}
+
 	public int getStar_4() {
 		return star_4;
 	}
+
 	public void setStar_4(int star_4) {
 		this.star_4 = star_4;
 	}
+
 	public int getStar_5() {
 		return star_5;
 	}
+
 	public void setStar_5(int star_5) {
 		this.star_5 = star_5;
 	}
-	public Rate(int star_1, int star_2, int star_3, int star_4, int star_5) {
-		super();
+
+	public Rate(int star_1, int star_2, int star_3, int star_4, int star_5, int comment_num) {
 		this.star_1 = star_1;
 		this.star_2 = star_2;
 		this.star_3 = star_3;
 		this.star_4 = star_4;
 		this.star_5 = star_5;
+		this.comment_num = comment_num;
 	}
+
 	public Rate() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	@Override
 	public String toString() {
-		return "STAR_1 :" + star_1 +"\t\tSTAR_2 :" +star_2+"\t\tSTAR_3 :" +star_3+"\t\tSTAR_4 :" +star_4+"\t\tSTAR_5 :" +star_5;
+		return "STAR_1 :" + star_1 + "\t\tSTAR_2 :" + star_2 + "\t\tSTAR_3 :" + star_3 + "\t\tSTAR_4 :" + star_4
+				+ "\t\tSTAR_5 :" + star_5 + "\t\tCOMMENT : " + comment_num;
 	}
+
 	public static void main(String[] args) {
-		Rate r= new Rate();
+		Rate r = new Rate();
 		System.err.println(r.toString());
 	}
+
 	public void setRate(int star, int rate_number) {
 		switch (star) {
 		case 1:
@@ -75,5 +100,5 @@ public class Rate {
 			break;
 		}
 	}
-	
+
 }

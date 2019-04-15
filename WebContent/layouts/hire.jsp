@@ -94,25 +94,22 @@
 			<div class="button">
 				<a type="button" data-toggle="modal"
 					data-target="#caregiverInformationModal"
-					data-id_caregiver=<%=caregiver.getId_Account() %>
+					data-id_caregiver=<%=caregiver.getId_Account()%>
 					data-name_caregiver="<%=caregiver.getName()%>"
 					data-describle="<%=caregiver.getDescribe()%>"
-					data-star_1=<%=map.get(caregiver.getId_Account()).getStar_1() %>
-					data-star_2=<%=map.get(caregiver.getId_Account()).getStar_2() %>
-					data-star_3=<%=map.get(caregiver.getId_Account()).getStar_3() %>
-					data-star_4=<%=map.get(caregiver.getId_Account()).getStar_4() %>
-					data-star_5=<%=map.get(caregiver.getId_Account()).getStar_5() %>
+					data-star_1=<%=map.get(caregiver.getId_Account()).getStar_1()%>
+					data-star_2=<%=map.get(caregiver.getId_Account()).getStar_2()%>
+					data-star_3=<%=map.get(caregiver.getId_Account()).getStar_3()%>
+					data-star_4=<%=map.get(caregiver.getId_Account()).getStar_4()%>
+					data-star_5=<%=map.get(caregiver.getId_Account()).getStar_5()%>
 					data-sum_star=<%=sum_star%>
-					data-src_caregiver="<%=request.getContextPath()%>/image/<%=caregiver.getAvatar()%>">Detail</a>
+					data-src_caregiver="<%=request.getContextPath()%>/image/<%=caregiver.getAvatar()%>"<%-- data-comment_number = <%=map.get(caregiver.getId_Account()).getComment_num() %> --%>
+					
+					>Detail</a>
 			</div>
 			<h3><%=caregiver.getName()%></h3>
-			<div class="rating">
-				<span class="glyphicon glyphicon-star"></span><span
-					class="glyphicon glyphicon-star"> </span><span
-					class="glyphicon glyphicon-star"></span><span
-					class="glyphicon glyphicon-star"> </span><span
-					class="glyphicon glyphicon-star-empty"></span>
-			</div>
+			<input type="hidden" id="rating">
+			<div class="rateyo-readonly-widg-aa"></div>
 			<h4><%=sum_star%></h4>
 			<h4><%=caregiver.getName_education()%></h4>
 			<div class="col-md-6 text-left">hire cost: free</div>
@@ -125,3 +122,12 @@
 </div>
 <%@include file="../layouts/footer.jsp"%>
 <%@include file="/modal/caregiverInformation.jsp"%>
+<script>
+	
+$(".rateyo-readonly-widg-aa").rateYo({
+
+	rating : 3,
+	readOnly : true
+}).on("rateyo.change", function(e, data) {
+	console.log(data.rating);
+});		</script>

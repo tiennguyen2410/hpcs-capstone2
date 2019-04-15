@@ -27,7 +27,7 @@ public class CalendarServlet extends HttpServlet {
 			throws ServletException, IOException {
 		CalendarBO calendarBO = new CalendarBO();
 		// load lich cua ai thi truyen id vao
-		int idCare=2000;
+		int idCare=3;
 		String status="0_";
 		if (request.getParameter("submit") != null) {
 			if (request.getParameter("submit").equals("add")) { // click add lich
@@ -64,7 +64,6 @@ public class CalendarServlet extends HttpServlet {
 				status="1_Cancel Calendar successfully";
 				calendarBO.cancelCalendarCustomer(request.getParameter("idCancelCalendar"));
 			}
-
 		}
 		ArrayList<Calendar> list = calendarBO.getListCalendar(idCare);
 		request.setAttribute("calendar", list);

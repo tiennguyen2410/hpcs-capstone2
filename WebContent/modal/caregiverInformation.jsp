@@ -14,19 +14,15 @@
 					</div>
 					<div class="details col-md-6">
 						<h3 class="caregiver-name hired">
-							<a class="caregiver-profile" href="#" id="name_caregiver">Nguyễn Hoàng Thiện</a> <span>
+							<a class="caregiver-profile" href="#" id="name_caregiver"></a> <span>
 								1111123 hired</span>
 						</h3>
 						<div class="row">
 							<%@include file="../layouts/rating.jsp"%>
 						</div>
-						<a type="button" class="show-comment" id="show-comment">View all comments</a>
-						<a type="button" class="hide-comment" id="hide-comment">Hide all comments</a>
-						<div class="comment-info" id="comment-info">
-							<div class="comment-scroll">
-								<%@include file="../layouts/comment.jsp"%>
-							</div>
-						</div>
+						<input id="commentt" hidden="hidden">
+						<a onclick="load_comment()">View Comment</a>
+						<iframe id="view_comment"></iframe>
 						<p id="describle"></p>
 						<h4 class="price">
 							Hire cost: <span>FREE</span>
@@ -51,6 +47,7 @@
 		var star_3 = button.data('star_3')
 		var star_4 = button.data('star_4')
 		var star_5 = button.data('star_5')
+	
 		/* var star_1 = 0
 		var star_2 = 0
 		var star_3 = 0
@@ -59,7 +56,7 @@
 		var sum_star = button.data('sum_star')
 
 		var src_caregiver = button.data('src_caregiver')
-
+		var sum_comment = button.data('comment_number')
 		//tinh %
 		var sum_star_pt = (star_1 + star_2 + star_3 + star_4 + star_5) * 1.0
 		var star1_pt = 100 * star_1 / sum_star_pt
@@ -88,11 +85,21 @@
 		document.getElementById("star_5").style.width = star5_pt + '%';
 
 		document.getElementById("src_caregiver").src = src_caregiver;
+		
+		$("#commentt").val(id);
+		
 		$(".rateyo-readonly-widg").rateYo({
+
 			rating : (sum_star),
-			readOnly : trues
+			readOnly : true
 		}).on("rateyo.change", function(e, data) {
 			console.log(data.rating);
-		});
+		});		
+		document.getElementById("rating-modal").innerHTML = '<span class=\"glyphicon glyphicon-user\"></span>' + sum_star_pt + ' reviews ';
+		document.getElementById("comment-modal").innerHTML = '<span class=\"glyphicon glyphicon-user\"></span>' + sum_comment + ' comment ';
+		
 	});
+	function load_comment() {
+		document.getElementById("view_comment").src = '/home_patient_care_service/CommentServlet?id_cargiver='+document.getElementById('commentt').value;
+	}
 </script>

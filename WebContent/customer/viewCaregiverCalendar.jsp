@@ -6,11 +6,36 @@
 <%@include file="../layouts/header.jsp"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.BEAN.Calendar"%>
-<div id="wrap">
-<button type="button" onclick="showModalBookCaregiverCalendar()">Đặt Lịch</button>
-	<div id="calendar"></div>
-
-	<div style="clear: both"></div>
+<div class="row">
+	<div class="col-md-2 sidebar">
+		<div class="logo text-center">
+			<img
+				src="https://scontent.fdad3-3.fna.fbcdn.net/v/t1.0-9/19894634_864899573660241_8429616415869455758_n.jpg?_nc_cat=100&_nc_oc=AQlWXl4rLoIlJ-qBOkCikFSWhkoSDsoGRGDxOknt47DkXcj1taiC5W3RSbhdu2kxpyI&_nc_ht=scontent.fdad3-3.fna&oh=5987e68f559107fa84059bb5d2bac1cc&oe=5D168F72"
+				class="img-responsive center-block" alt="Logo">
+			<h5>
+				<strong>Nguyễn Hoàng Thiện</strong>
+			</h5>
+		</div>
+		<input type="hidden" id="rating">
+		<div class="rateyo-readonly-widg-aa"></div>
+		<%-- <h4><%=sum_star%></h4>
+			<h4><%=caregiver.getName_education()%></h4> --%>
+		<div class="row">
+			<div class="col-md-6">
+				<button type="button" class="btn btn-danger form-control col-md-offset-1">Cancel</button>
+			</div>
+			<div class="col-md-6">
+				<button type="button" onclick="showModalBookCaregiverCalendar()"
+					class="btn btn-success form-control">Hire</button>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-10 customer-content">
+		<div class="wrap">
+			<div id="calendar"></div>
+			<div style="clear: both"></div>
+		</div>
+	</div>
 </div>
 <%@include file="../layouts/footer.jsp"%>
 <script
@@ -147,7 +172,7 @@
 											allDay : false,
 											editable : false,
 											<%if (calendar.get(i).getId_customer() != 0) {%>
-											 className : 'info'
+											className : 'info'
 												<%} else {%>
 												className : 'free'
 											<%}%>

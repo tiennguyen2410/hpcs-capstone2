@@ -29,7 +29,7 @@ public class CalendarBO {
 	public void cancelCalendarCustomer(String id) {
 		dao.cancelCalendarCustomer(id);
 	}
-	public void bookCaregiverCalendar(String id,String address, String idCustomer,String money,String intoMoney,String promotion) {
+	public void bookCaregiverCalendar(int id,String address, int idCustomer,double money,double intoMoney,double promotion) {
 		dao.bookCaregiverCalendar(id, address, idCustomer, money, intoMoney, promotion);
 	}
 	public boolean checkOverlapTime(String startTime,String endTime,int idCaregiver,int idCalendar) {

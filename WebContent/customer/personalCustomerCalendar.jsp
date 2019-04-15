@@ -6,9 +6,14 @@
 <%@include file="../layouts/header.jsp"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.BEAN.Calendar"%>
-<div id="wrap">
-	<div id="calendar"></div>
-	<div style="clear: both"></div>
+<div class="row">
+	<%@include file="../customer/sidebarCustomer.jsp"%>
+	<div class="col-md-10 customer-content">
+		<div class="wrap">
+			<div id="calendar"></div>
+			<div style="clear: both"></div>
+		</div>
+	</div>
 </div>
 <%@include file="../layouts/footer.jsp"%>
 <script
@@ -69,17 +74,10 @@
 							selectable : true,
 							defaultView : 'agendaWeek',
 							select : function(start, end, allDay) {
-								
 								var s =convertDate(start);
 								var e = convertDate(end);
 								if(checkPastDate(s)){
-									alert('ok');
-									$("#timeStart").val(s);
-									$("#timeEnd").val(e);
-									var title='Free Time';
-									$('#addSchedule').submit(function() {
-										  // your code here
-										});
+									thue1(s,e);
 								}
 								},
 							axisFormat : 'h:mm',
@@ -199,8 +197,8 @@
 	}
 	$( document ).ready(function() {
 		$(document).find("title").text("Lịch Cá Nhân Của khach hang ");
-		<%if(request.getAttribute("status")!=null){%>
-			var status = '<%=((String)request.getAttribute("status"))%>'; 
+		<%if (request.getAttribute("status") != null) {%>
+			var status = '<%=((String) request.getAttribute("status"))%>'; 
 			var check = status.substring(0,1);
 			var content=status.substring(2,status.length);
 		 if (check==1){
@@ -224,8 +222,29 @@
 		<%}%> 
 	});
 	function thue(){
-		
+		document.getElementById("id_subSearch").src= "/home_patient_care_service/SearchCaregiverCalendarServlet?data="+$("#cancelTimeStart").val()+"_"+$("#cancelTimeFinish").val();
 		$('#searchCaregiverCalendarModal').modal('show');
+	}
+	// thue khi select a area
+	function thue1(s,e){
+		document.getElementById("id_subSearch").src= "/home_patient_care_service/SearchCaregiverCalendarServlet?data="+s+"_"+e;
+		$('#searchCaregiverCalendarModal').modal('show');
+	}
+	$(window).on('load', function() {
+		 // code here
+		<%if (request.getAttribute("ifram") != null) {%>
+		setTimeout(function() {
+			parent.location.href='http://localhost:8080/home_patient_care_service/PersonalCustomerCalendarServlet';
+		}, 0);
+		
+	<%}%>
+		});
+	
+	function notFoundCaregiver(){
+		setTimeout(function() { 
+			$('#searchCaregiverCalendarModal').modal('hide');
+		}, 0);
+		alert("No caregivers found matching the above time frame, please select another time frame!");
 	}
 </script>
 <%@include file="../modal/cancelCagiverCalendar.jsp"%>

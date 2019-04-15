@@ -11,8 +11,8 @@
 	</div>
 	<div class="left-navigation">
 		<ul class="list">
-			<li><a type="button" href="../customer/profileCustomer.jsp">Profile</a></li>
-			<li><a type="button" href="#">Timetable</a></li>
+			<li><a type="button" href="/home_patient_care_service/customer/profileCustomer.jsp">Profile</a></li>
+			<li><a type="button" href="/home_patient_care_service/PersonalCustomerCalendarServlet">Calendar</a></li>
 			<li><a type="button" href="#">Coin</a></li>
 			<li><a type="button" href="#">History</a></li>
 			<li style="color: #B22222">Sign out</li>

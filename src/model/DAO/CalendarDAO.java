@@ -170,7 +170,7 @@ public class CalendarDAO {
 			e.printStackTrace();
 		}
 	}
-	public void bookCaregiverCalendar(String id,String address, String idCustomer,String money,String intoMoney,String promotion) {
+	public void bookCaregiverCalendar(int id,String address, int idCustomer,double money,double intoMoney,double promotion) {
 		String sql = "UPDATE `capstone2`.`calendar` SET `ADDRESS`='"+address+"', `ID_CUSTOMER`='"+idCustomer+"',  `MONEY`='"+money+"', `INTO_MONEY`='"+intoMoney+"',`PROMOTION`='"+promotion+"' WHERE `ID_CALENDAR`='"+id+"';";
 		System.out.println("book");
 		System.out.println(sql);

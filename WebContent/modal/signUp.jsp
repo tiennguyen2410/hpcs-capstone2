@@ -10,7 +10,7 @@
 					style="width: 100%;">
 				<p class="text-center">
 					Do not have an account, <a class="sign-in" id="sign-in-toggle"
-						type="button" href="#">sign up now!</a>
+						type="button" href="#">sign in now!</a>
 				</p>
 			</div>
 			<div class="col-md-8 form-horizontal">

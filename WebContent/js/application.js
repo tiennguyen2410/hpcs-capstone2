@@ -76,3 +76,21 @@ $(document).ready(function(){
 		$('#show-comment').show();
 	});
 });
+
+$(document).ready(function(){
+	$('#open-edit-toggle').click(function(){
+		$('#open-edit-form').show();
+		$('#open-infor-form').hide();
+	});
+	$('#open-infor-toggle').click(function(){
+		$('#open-infor-form').show();
+		$('#open-edit-form').hide();
+	});
+});
+
+$(document).ready(function(){
+	$('.open-infor-caregiver-toggle').click(function(){
+		$('#infor-caregiver-hire').show();
+	});
+});
+
